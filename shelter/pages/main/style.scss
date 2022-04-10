@@ -1,14 +1,47 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+}
+
 .container {
+  position: relative;
   max-width: 1280px;
   margin: 0 auto;
   padding: 60px 40px;
 }
 
 $color-primary: #F1CDB3;
+$color-primary-hover: #FDDCC4;
 $color-light-xl: #FFFFFF;
 $color-light-s: #FAFAFA;
 $color-dark-s: #CDCDCD;
+$color-dark-3xl: #292929;
 
+@mixin btn($background, $backgroun-hover) {
+  width: 207px;
+  height: 52px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: $color-dark-3xl;
+  background: $background;
+  border-radius: 100px;
+  transition: all 0.5s;
+
+  &:hover {
+    background: $backgroun-hover;
+  }
+
+  &:active {
+    background: darken($background, 10%);
+    transform: translateY(1px);
+  } 
+}
 
 .header {
   width: 100%;
@@ -16,7 +49,6 @@ $color-dark-s: #CDCDCD;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #8b1482; //////////////////temporary
 }
 
 .logo {
@@ -25,6 +57,7 @@ $color-dark-s: #CDCDCD;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+  cursor: pointer;
 
   .logo-title {
     margin: 0;
@@ -65,12 +98,17 @@ $color-dark-s: #CDCDCD;
     font-style: normal;
     font-size: 15px;
     line-height: 160%;
+    transition: transform 0.25s;
+
+    &:active {
+      transform: translateY(1px);
+    }
   }
 
   .menu-link {
     position: relative;
     color: $color-dark-s;
-
+    
     &::after {
       position: absolute;
       left: 0;
@@ -87,12 +125,77 @@ $color-dark-s: #CDCDCD;
     &.active,
     &:hover::after,
     &.active::after {
-      color: $color-light-s;
       transform: scaleX(1);
       transform-origin: bottom left;
+      transition: transform 0.25s, color 0.5s;
+      color: $color-light-s;
     }
   }
 }
 
+.start-screen {
+
+  .start-bkg{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 908px;
+    width: 100%;
+    background: url('../../assets/images/start-screen-background.jpg') no-repeat center / cover;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .start-content {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+  }
+
+  .start-wrapper {
+    margin-top: 163px;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+
+    .start-title {
+      width: 310px;
+      height: 114px;
+      font-family: 'Georgia';
+      font-style: normal;
+      font-size: 44px;
+      line-height: 130%;
+      color: $color-light-xl;
+    }
+
+    .start-text {
+      width: 460px;
+      height: 72px;
+      font-family: 'Arial';
+      font-style: normal;
+      font-size: 15px;
+      line-height: 160%;
+      color: $color-dark-s;
+    }
+
+    .btn {
+      @include btn($color-primary, $color-primary-hover);
+    }
+  }
+
+  .start-puppy {
+    width: 668px;
+    height: 728px;
+    background: url('../../assets/images/start-screen-puppy.png') no-repeat;
+  }
+
+}
 
 
+
+
+
+
+//background: #F1CDB3;
