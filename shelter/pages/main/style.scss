@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  height: auto;
   background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
@@ -11,6 +12,9 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 $color-primary: #F1CDB3;
@@ -19,6 +23,8 @@ $color-light-xl: #FFFFFF;
 $color-light-s: #FAFAFA;
 $color-dark-s: #CDCDCD;
 $color-dark-3xl: #292929;
+$color-dark-l: #545454;
+$color-dark-xl: #4C4C4C;
 
 @mixin btn($background, $backgroun-hover) {
   width: 207px;
@@ -41,6 +47,16 @@ $color-dark-3xl: #292929;
     background: darken($background, 10%);
     transform: translateY(1px);
   } 
+}
+
+@mixin main-title() {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 35px;
+  line-height: 130%;
+  align-items: center;
+  letter-spacing: 0.06em;
+  color: $color-dark-l;
 }
 
 .header {
@@ -133,6 +149,10 @@ $color-dark-3xl: #292929;
   }
 }
 
+.main {
+  flex: 1 1 auto;
+}
+
 .start-screen {
 
   .start-bkg{
@@ -189,6 +209,36 @@ $color-dark-3xl: #292929;
     width: 668px;
     height: 728px;
     background: url('../../assets/images/start-screen-puppy.png') no-repeat;
+  }
+
+}
+
+.about {
+  margin: 0 -40px;
+  padding: 80px 215px 100px;
+  display: flex;
+  gap: 120px;
+  background-color: $color-light-xl;
+
+  .wrapper {
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .title {
+      width: 370px;
+      @include main-title();
+    }
+
+    .text {
+      font-family: 'Arial';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 160%;
+      color: $color-dark-xl;
+    }
   }
 
 }
