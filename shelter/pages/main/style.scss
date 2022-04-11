@@ -27,6 +27,7 @@ $color-dark-s: #CDCDCD;
 $color-dark-3xl: #292929;
 $color-dark-l: #545454;
 $color-dark-xl: #4C4C4C;
+$color-dark-m: #B2B2B2;
 
 @mixin btn-primary($width) {
   width: $width;
@@ -420,5 +421,79 @@ $color-dark-xl: #4C4C4C;
       color: $color-dark-l;
     }
   }
-
 }
+
+#in-addition {
+  margin: 0 -40px;
+  padding: 78px 182px 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  background-color: $color-light-1;
+
+  .add-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .title {
+    width: 300px;
+    @include main-title();
+  }
+
+  .subhead {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: $color-dark-l;
+  }
+
+  .credit-card {
+    width: 349px;
+    height: 43px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background: $color-primary;
+    border-radius: 9px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: $color-dark-l;
+    transition: all 0.3s;
+
+
+    &:hover {
+      background: $color-primary-light;
+      p.number {
+        text-transform: uppercase;
+      }
+    }
+
+    &:active {
+      background: darken($color-primary-light, 10%);
+      transform: translateY(1px);
+    } 
+  }
+
+  p.legal {
+    font-family: 'Arial';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: $color-dark-m;
+  }
+}
+
