@@ -3,8 +3,9 @@ html {
 }
 
 body {
-  height: auto;
-  background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  min-height: 100%;
+  background: radial-gradient(#5B483A, #262425), #211F20;
+
 }
 
 .container {
@@ -18,16 +19,17 @@ body {
 }
 
 $color-primary: #F1CDB3;
-$color-primary-hover: #FDDCC4;
+$color-primary-light: #FDDCC4;
 $color-light-xl: #FFFFFF;
 $color-light-s: #FAFAFA;
+$color-light-1: #F6F6F6;
 $color-dark-s: #CDCDCD;
 $color-dark-3xl: #292929;
 $color-dark-l: #545454;
 $color-dark-xl: #4C4C4C;
 
-@mixin btn($background, $backgroun-hover) {
-  width: 207px;
+@mixin btn-primary($width) {
+  width: $width;
   height: 52px;
   font-family: 'Georgia';
   font-style: normal;
@@ -35,17 +37,71 @@ $color-dark-xl: #4C4C4C;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: $color-dark-3xl;
-  background: $background;
+  background: $color-primary;
   border-radius: 100px;
   transition: all 0.5s;
 
   &:hover {
-    background: $backgroun-hover;
+    background: $color-primary-light;
   }
 
   &:active {
-    background: darken($background, 10%);
+    background: darken($color-primary, 10%);
     transform: translateY(1px);
+  } 
+}
+
+@mixin btn-secondary($width) {
+  width: $width;
+  height: 52px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: $color-dark-3xl;
+  background: $color-light-s;
+  border-radius: 100px;
+  border: 2px solid $color-primary;
+  transition: all 0.5s;
+
+  &:hover {
+    background:  $color-primary-light;
+  }
+
+  &:active {
+    background: darken($color-primary, 10%);
+    transform: translateY(1px);
+  } 
+}
+
+@mixin btn-arrow($direction) {
+
+  width: 52px;
+  height: 52px;
+  border: 2px solid $color-primary;
+  box-sizing: border-box;
+  border-radius: 100px;
+  background-color: $color-light-1;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: color 0.5s;
+
+  @if $direction == 'left' {
+    background-image: url('../../assets/svg/arrow.svg');
+    
+  }
+  @if $direction == 'right' {
+    background-image: url('../../assets/svg/arrow.svg');
+    transform: rotate(-180deg);
+  }
+
+  &:hover {
+    background-color:  $color-primary-light;
+  }
+
+  &:active {
+    background-color: darken($color-primary-light, 10%);
   } 
 }
 
@@ -201,7 +257,7 @@ $color-dark-xl: #4C4C4C;
     }
 
     .btn {
-      @include btn($color-primary, $color-primary-hover);
+      @include btn-primary(207px);
     }
   }
 
@@ -243,9 +299,83 @@ $color-dark-xl: #4C4C4C;
 
 }
 
+#our-friends {
+  margin: 0 -40px;
+  padding: 80px 40px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  background-color: $color-light-1;
+
+  .title {
+    width: 400px;
+    text-align: center;
+    @include main-title();
+  }
+
+  .slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 53px;
+
+    .btn.arrow-left {
+      @include btn-arrow($direction: 'left');
+    }
+
+    .btn.arrow-right {
+      @include btn-arrow($direction: 'right');
+    }
+    
+  }
+
+  .card-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 90px;
+
+    .card {
+      padding-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      border-radius: 9px;
+      background-color: $color-light-s;
+      transition: all 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-light-xl;
+        .btn.pets {
+          background-color:  $color-primary-light;
+        }
+      }
+
+      img {
+        border-radius: 9px 9px 0 0;
+      }
+
+      .pet-name {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.06em;
+        color: $color-dark-l;
+      }
+
+      .btn.pets {
+        @include btn-secondary(187px);
+      }
 
 
+    }
+  }
 
-
-
-//background: #F1CDB3;
+  .btn.our-pets {
+    @include btn-primary(261px);
+  }
+}
