@@ -2,11 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  overflow: auto;
-  background: radial-gradient(#5B483A, #262425), #211F20;
-}
-
 $color-primary: #F1CDB3;
 $color-primary-light: #FDDCC4;
 $color-light-xl: #FFFFFF;
@@ -17,29 +12,6 @@ $color-dark-3xl: #292929;
 $color-dark-l: #545454;
 $color-dark-xl: #4C4C4C;
 $color-dark-m: #B2B2B2;
-
-@mixin btn-primary($width) {
-  width: $width;
-  height: 52px;
-  font-family: 'Georgia';
-  font-style: normal;
-  font-size: 17px;
-  line-height: 130%;
-  letter-spacing: 0.06em;
-  color: $color-dark-3xl;
-  background: $color-primary;
-  border-radius: 100px;
-  transition: all 0.5s;
-
-  &:hover {
-    background: $color-primary-light;
-  }
-
-  &:active {
-    background: darken($color-primary, 10%);
-    transform: translateY(1px);
-  } 
-}
 
 @mixin btn-secondary($width) {
   width: $width;
@@ -65,10 +37,11 @@ $color-dark-m: #B2B2B2;
   } 
 }
 
-@mixin btn-arrow($direction) {
+@mixin btn-arrow() {
 
   width: 52px;
   height: 52px;
+  padding-bottom: 1px;
   border: 2px solid $color-primary;
   box-sizing: border-box;
   border-radius: 100px;
@@ -77,13 +50,15 @@ $color-dark-m: #B2B2B2;
   background-repeat: no-repeat;
   transition: color 0.5s;
 
-  @if $direction == 'left' {
-    background-image: url('../../assets/svg/arrow.svg');
-    
-  }
-  @if $direction == 'right' {
-    background-image: url('../../assets/svg/arrow.svg');
-    transform: rotate(-180deg);
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: $color-dark-3xl;
+
+  &.active {
+    background-color:  $color-primary;
   }
 
   &:hover {
@@ -93,6 +68,18 @@ $color-dark-m: #B2B2B2;
   &:active {
     background-color: darken($color-primary-light, 10%);
   } 
+
+  &.disabled {
+    color: $color-dark-s;
+    border: 2px solid $color-dark-s;
+    &:hover {
+      background-color:  $color-light-1;
+    }
+  
+    &:active {
+      background-color: $color-light-1;
+    } 
+  }
 }
 
 @mixin main-title() {
@@ -105,17 +92,32 @@ $color-dark-m: #B2B2B2;
   color: $color-dark-l;
 }
 
+body {
+  overflow: auto;
+  background: radial-gradient(#5B483A, #262425), #211F20;
+}
+
 .container {
   position: relative;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 60px 40px 0;
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 #header {
+  width: calc(100% + 80px);
+  height: 120px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-light-xl;
+}
+
+.header-container {
   width: 100%;
   height: 60px;
   display: flex;
@@ -138,7 +140,7 @@ $color-dark-m: #B2B2B2;
     font-size: 32px;
     line-height: 110%;
     letter-spacing: 0.06em;
-    color: $color-primary;
+    color: $color-dark-l;
   }
   
   .logo-subtitle {
@@ -147,7 +149,7 @@ $color-dark-m: #B2B2B2;
     font-size: 13px;
     line-height: 15px;
     letter-spacing: 0.1em;
-    color: $color-light-xl;
+    color: $color-dark-l;
   }
 }
 
@@ -178,7 +180,7 @@ $color-dark-m: #B2B2B2;
 
   .menu-link {
     position: relative;
-    color: $color-dark-s;
+    color: $color-dark-l;
     
     &::after {
       position: absolute;
@@ -199,7 +201,7 @@ $color-dark-m: #B2B2B2;
       transform: scaleX(1);
       transform-origin: bottom left;
       transition: transform 0.25s, color 0.5s;
-      color: $color-light-s;
+      color: $color-dark-3xl;
     }
   }
 }
@@ -208,103 +210,13 @@ $color-dark-m: #B2B2B2;
   flex: 1 1 auto;
 }
 
-#start-screen {
-
-  .start-bkg{
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    height: 908px;
-    width: 100%;
-    background: url('../../assets/images/start-screen-background.jpg') no-repeat center / cover;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  .start-content {
-    padding-top: 60px;
-    display: flex;
-    flex-direction: row;
-    gap: 42px;
-  }
-
-  .start-wrapper {
-    margin-top: 163px;
-    width: 460px;
-    display: flex;
-    flex-direction: column;
-    gap: 42px;
-
-    .start-title {
-      width: 310px;
-      height: 114px;
-      font-family: 'Georgia';
-      font-style: normal;
-      font-size: 44px;
-      line-height: 130%;
-      color: $color-light-xl;
-    }
-
-    .start-text {
-      width: 460px;
-      height: 72px;
-      font-family: 'Arial';
-      font-style: normal;
-      font-size: 15px;
-      line-height: 160%;
-      color: $color-dark-s;
-    }
-
-    .btn {
-      @include btn-primary(207px);
-    }
-  }
-
-  .start-puppy {
-    width: 668px;
-    height: 728px;
-    background: url('../../assets/images/start-screen-puppy.png') no-repeat;
-  }
-
-}
-
-.about {
-  margin: 0 -40px;
-  padding: 80px 215px 100px;
-  display: flex;
-  gap: 120px;
-  background-color: $color-light-xl;
-
-  .wrapper {
-    padding-top: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-
-    .title {
-      width: 370px;
-      @include main-title();
-    }
-
-    .text {
-      font-family: 'Arial';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 160%;
-      color: $color-dark-xl;
-    }
-  }
-
-}
-
 #our-friends {
   margin: 0 -40px;
-  padding: 80px 40px 100px;
+  padding: 80px 0 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 60px;
+  gap: 45px;
   background-color: $color-light-1;
 
   .title {
@@ -313,27 +225,14 @@ $color-dark-m: #B2B2B2;
     @include main-title();
   }
 
-  .slider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 53px;
-
-    .btn.arrow-left {
-      @include btn-arrow($direction: 'left');
-    }
-
-    .btn.arrow-right {
-      @include btn-arrow($direction: 'right');
-    }
-    
-  }
-
   .card-wrapper {
+    padding: 15px 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 90px;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    row-gap: 30px;
 
     .card {
       padding-bottom: 30px;
@@ -369,129 +268,19 @@ $color-dark-m: #B2B2B2;
       .btn.pets {
         @include btn-secondary(187px);
       }
-
-
     }
   }
 
-  .btn.our-pets {
-    @include btn-primary(261px);
-  }
-}
-
-#help {
-  margin: 0 -40px;
-  padding: 80px 87px 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 60px;
-  background-color: $color-light-xl;
-
-  .title {
-    width: 310px;
-    text-align: center;
-    @include main-title();
-  }
-
-  .help-wrapper {
+  .navigation {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
-    align-content: space-between;
-    row-gap: 55px;
-    column-gap: 120px;
-  }
-
-  .help-item {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-
-    p {
-      font-family: 'Georgia';
-      font-style: normal;
-      font-size: 20px;
-      line-height: 115%;
-      letter-spacing: 0.06em;
-      color: $color-dark-l;
-    }
-  }
-}
-
-#in-addition {
-  margin: 0 -40px;
-  padding: 78px 182px 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 30px;
-  background-color: $color-light-1;
-
-  .add-wrapper {
-    display: flex;
-    flex-direction: column;
     gap: 20px;
-  }
 
-  .title {
-    width: 300px;
-    @include main-title();
-  }
-
-  .subhead {
-    font-family: 'Georgia';
-    font-style: normal;
-    font-size: 15px;
-    line-height: 110%;
-    letter-spacing: 0.06em;
-    color: $color-dark-l;
-  }
-
-  .credit-card {
-    width: 349px;
-    height: 43px;
-    padding: 10px 14px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    background: $color-primary;
-    border-radius: 9px;
-    font-family: 'Georgia';
-    font-style: normal;
-    font-size: 20px;
-    line-height: 115%;
-    letter-spacing: 0.06em;
-    color: $color-dark-l;
-    transition: all 0.3s;
-
-
-    &:hover {
-      background: $color-primary-light;
-      p.number {
-        text-transform: uppercase;
-      }
-    }
-
-    &:active {
-      background: darken($color-primary-light, 10%);
-      transform: translateY(1px);
+    .btn-pag {
+      @include btn-arrow();
     } 
-  }
 
-  p.legal {
-    font-family: 'Arial';
-    font-style: italic;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    color: $color-dark-m;
   }
 }
 
