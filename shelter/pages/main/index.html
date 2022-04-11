@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="container">
-    <header class="header">
+    <header id="header">
       <a href=".">
         <div class="logo">
           <h1 class="logo-title">Cozy House</h1>
@@ -22,14 +22,14 @@
       <nav class="menu">
         <ul class="menu-list">
           <li class="menu-line"><a href="#top" class="menu-link active">About the shelter</a></li>
-          <li class="menu-line"><a href="#pets" class="menu-link">Our pets</a></li>
+          <li class="menu-line"><a href="../pets/index.html" class="menu-link">Our pets</a></li>
           <li class="menu-line"><a href="#help" class="menu-link">Help the shelter</a></li>
-          <li class="menu-line"><a href="#contacts" class="menu-link">Contacts</a></li>
+          <li class="menu-line"><a href="#footer" class="menu-link">Contacts</a></li>
         </ul>
       </nav>
     </header>
     <main class="main">
-      <section class="start-screen">
+      <section id="start-screen">
         <div class="start-bkg"></div>
         <div class="start-content">
           <div class="start-wrapper">
@@ -40,7 +40,6 @@
             <a href="#our-friends">
               <button class="btn start">Make a friend</button>
             </a>
-            
           </div>
           <div class="start-puppy"></div>
         </div>
@@ -130,7 +129,6 @@
             <img src="../../assets/svg/sleeping-area.svg" alt="sleeping area" width="60" height="60">
             <p>Sleeping areas</p>
           </div>
-          
         </div>
       </section>
       <section id="in-addition">
@@ -148,6 +146,37 @@
         </div>
       </section>
     </main>
+    <footer id="footer">
+      <div class="contacts-wrapper">
+        <h3 class="title">For questions and suggestions</h3>
+        <ul class="contacts">
+          <li class="email">
+            <img src="../../assets/svg/mail.svg" alt="pin" width="40" height="26">
+            <a href="mailto://email@shelter.com" class="contact-link">email@shelter.com</a>
+          </li>
+          <li class="phone">
+            <img src="../../assets/svg/phone.svg" alt="pin" width="40" height="32">
+            <a href="tel:+136745677554" class="contact-link">+13 674 567 75 54</a>
+          </li>
+        </ul>
+      </div>
+      <div class="locations-wrapper">
+        <h3 class="title">We are waiting for your visit</h3>
+        <ul class="locations">
+          <li class="localtion">
+            <img src="../../assets/svg/pin.svg" alt="pin" width="22" height="32">
+            <a href="https://www.google.ru/maps/place/%D0%91%D0%BE%D1%81%D1%82%D0%BE%D0%BD,+%D0%9C%D0%B0%D1%81%D1%81%D0%B0%D1%87%D1%83%D1%81%D0%B5%D1%82%D1%81,+%D0%A1%D0%A8%D0%90/@42.3142647,-71.1103687,11z/data=!3m1!4b1!4m5!3m4!1s0x89e3652d0d3d311b:0x787cbf240162e8a0!8m2!3d42.3600825!4d-71.0588801?hl=ru"
+              class="localtion-link">1 Central Street, Boston <br> (entrance from the store)</a>
+          </li>
+          <li class="localtion">
+            <img src="../../assets/svg/pin.svg" alt="pin" width="22" height="32">
+            <a href="https://www.google.ru/maps/place/%D0%9B%D0%BE%D0%BD%D0%B4%D0%BE%D0%BD,+%D0%92%D0%B5%D0%BB%D0%B8%D0%BA%D0%BE%D0%B1%D1%80%D0%B8%D1%82%D0%B0%D0%BD%D0%B8%D1%8F/@51.528308,-0.3817797,10z/data=!3m1!4b1!4m5!3m4!1s0x47d8a00baf21de75:0x52963a5addd52a99!8m2!3d51.5072178!4d-0.1275862?hl=ru"
+              class="localtion-link">18 South Park, London</a>
+          </li>
+        </ul>
+      </div>
+      <img class="footer-puppy" src="../../assets/images/footer-puppy.png" alt="puppy" width="300" height="310">
+    </footer>
   </div>
 
   <script src="./index.js"></script>
