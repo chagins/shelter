@@ -379,3 +379,46 @@ $color-dark-xl: #4C4C4C;
     @include btn-primary(261px);
   }
 }
+
+#help {
+  margin: 0 -40px;
+  padding: 80px 87px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  background-color: $color-light-xl;
+
+  .title {
+    width: 310px;
+    text-align: center;
+    @include main-title();
+  }
+
+  .help-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    row-gap: 55px;
+    column-gap: 120px;
+  }
+
+  .help-item {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+
+    p {
+      font-family: 'Georgia';
+      font-style: normal;
+      font-size: 20px;
+      line-height: 115%;
+      letter-spacing: 0.06em;
+      color: $color-dark-l;
+    }
+  }
+
+}
