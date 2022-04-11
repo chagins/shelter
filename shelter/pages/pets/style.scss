@@ -13,6 +13,75 @@ $color-dark-l: #545454;
 $color-dark-xl: #4C4C4C;
 $color-dark-m: #B2B2B2;
 
+@mixin btn-secondary($width) {
+  width: $width;
+  height: 52px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: $color-dark-3xl;
+  background: $color-light-s;
+  border-radius: 100px;
+  border: 2px solid $color-primary;
+  transition: all 0.5s;
+
+  &:hover {
+    background:  $color-primary-light;
+  }
+
+  &:active {
+    background: darken($color-primary, 10%);
+    transform: translateY(1px);
+  } 
+}
+
+@mixin btn-arrow() {
+
+  width: 52px;
+  height: 52px;
+  padding-bottom: 1px;
+  border: 2px solid $color-primary;
+  box-sizing: border-box;
+  border-radius: 100px;
+  background-color: $color-light-1;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: color 0.5s;
+
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: $color-dark-3xl;
+
+  &.active {
+    background-color:  $color-primary;
+  }
+
+  &:hover {
+    background-color:  $color-primary-light;
+  }
+
+  &:active {
+    background-color: darken($color-primary-light, 10%);
+  } 
+
+  &.disabled {
+    color: $color-dark-s;
+    border: 2px solid $color-dark-s;
+    &:hover {
+      background-color:  $color-light-1;
+    }
+  
+    &:active {
+      background-color: $color-light-1;
+    } 
+  }
+}
+
 @mixin main-title() {
   font-family: 'Georgia';
   font-style: normal;
@@ -25,7 +94,7 @@ $color-dark-m: #B2B2B2;
 
 body {
   overflow: auto;
-  background-color: $color-light-1;
+  background: radial-gradient(#5B483A, #262425), #211F20;
 }
 
 .container {
@@ -45,7 +114,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $color-light-xl;
+  background-color: $color-light-xl;
 }
 
 .header-container {
@@ -137,9 +206,82 @@ body {
   }
 }
 
-
 .main {
   flex: 1 1 auto;
+}
+
+#our-friends {
+  margin: 0 -40px;
+  padding: 80px 0 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  background-color: $color-light-1;
+
+  .title {
+    width: 400px;
+    text-align: center;
+    @include main-title();
+  }
+
+  .card-wrapper {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    row-gap: 30px;
+
+    .card {
+      padding-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      border-radius: 9px;
+      background-color: $color-light-s;
+      transition: all 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-light-xl;
+        .btn.pets {
+          background-color:  $color-primary-light;
+        }
+      }
+
+      img {
+        border-radius: 9px 9px 0 0;
+      }
+
+      .pet-name {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.06em;
+        color: $color-dark-l;
+      }
+
+      .btn.pets {
+        @include btn-secondary(187px);
+      }
+    }
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+
+    .btn-pag {
+      @include btn-arrow();
+    } 
+
+  }
 }
 
 #footer {

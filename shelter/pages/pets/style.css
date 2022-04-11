@@ -4,7 +4,7 @@ html {
 
 body {
   overflow: auto;
-  background-color: #F6F6F6;
+  background: radial-gradient(#5B483A, #262425), #211F20;
 }
 
 .container {
@@ -37,7 +37,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
 .header-container {
@@ -170,6 +170,183 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+}
+
+#our-friends {
+  margin: 0 -40px;
+  padding: 80px 0 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 45px;
+  background-color: #F6F6F6;
+}
+
+#our-friends .title {
+  width: 400px;
+  text-align: center;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 35px;
+  line-height: 130%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+#our-friends .card-wrapper {
+  padding: 15px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-column-gap: 40px;
+          column-gap: 40px;
+  row-gap: 30px;
+}
+
+#our-friends .card-wrapper .card {
+  padding-bottom: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 30px;
+  border-radius: 9px;
+  background-color: #FAFAFA;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+#our-friends .card-wrapper .card:hover {
+  background-color: #FFFFFF;
+}
+
+#our-friends .card-wrapper .card:hover .btn.pets {
+  background-color: #FDDCC4;
+}
+
+#our-friends .card-wrapper .card img {
+  border-radius: 9px 9px 0 0;
+}
+
+#our-friends .card-wrapper .card .pet-name {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+#our-friends .card-wrapper .card .btn.pets {
+  width: 187px;
+  height: 52px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #292929;
+  background: #FAFAFA;
+  border-radius: 100px;
+  border: 2px solid #F1CDB3;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#our-friends .card-wrapper .card .btn.pets:hover {
+  background: #FDDCC4;
+}
+
+#our-friends .card-wrapper .card .btn.pets:active {
+  background: #e9b188;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+}
+
+#our-friends .navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 20px;
+}
+
+#our-friends .navigation .btn-pag {
+  width: 52px;
+  height: 52px;
+  padding-bottom: 1px;
+  border: 2px solid #F1CDB3;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 100px;
+  background-color: #F6F6F6;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #292929;
+}
+
+#our-friends .navigation .btn-pag.active {
+  background-color: #F1CDB3;
+}
+
+#our-friends .navigation .btn-pag:hover {
+  background-color: #FDDCC4;
+}
+
+#our-friends .navigation .btn-pag:active {
+  background-color: #fbbf93;
+}
+
+#our-friends .navigation .btn-pag.disabled {
+  color: #CDCDCD;
+  border: 2px solid #CDCDCD;
+}
+
+#our-friends .navigation .btn-pag.disabled:hover {
+  background-color: #F6F6F6;
+}
+
+#our-friends .navigation .btn-pag.disabled:active {
+  background-color: #F6F6F6;
 }
 
 #footer {
