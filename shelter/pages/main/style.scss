@@ -149,7 +149,6 @@ $color-dark-m: #B2B2B2;
     letter-spacing: 0.1em;
     color: $color-light-xl;
   }
-  
 }
 
 .menu {
@@ -496,8 +495,7 @@ $color-dark-m: #B2B2B2;
   }
 }
 
-@mixin footer {
-
+#footer {
   height: 350px;
   width: calc(100% + 80px);
   padding: 0 40px;
@@ -586,8 +584,4 @@ $color-dark-m: #B2B2B2;
   .footer-puppy {
     align-self: flex-end;
   }
-}
-
-#footer {
-  @include footer;
 }
