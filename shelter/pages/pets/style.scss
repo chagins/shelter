@@ -49,6 +49,7 @@ $color-dark-m: #B2B2B2;
   background-position: center;
   background-repeat: no-repeat;
   transition: color 0.5s;
+  cursor: inherit;
 
   font-family: 'Georgia';
   font-style: normal;
@@ -61,17 +62,20 @@ $color-dark-m: #B2B2B2;
     background-color:  $color-primary;
   }
 
-  &:hover {
+  &.ready:hover {
     background-color:  $color-primary-light;
+    cursor: pointer;
   }
 
-  &:active {
+  &.ready:active {
     background-color: darken($color-primary-light, 10%);
+    cursor: pointer;
   } 
 
   &.disabled {
     color: $color-dark-s;
     border: 2px solid $color-dark-s;
+    cursor: inherit;
     &:hover {
       background-color:  $color-light-1;
     }
