@@ -316,6 +316,7 @@ body {
   background-repeat: no-repeat;
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
+  cursor: inherit;
   font-family: 'Georgia';
   font-style: normal;
   font-size: 20px;
@@ -328,17 +329,20 @@ body {
   background-color: #F1CDB3;
 }
 
-#our-friends .navigation .btn-pag:hover {
+#our-friends .navigation .btn-pag.ready:hover {
   background-color: #FDDCC4;
+  cursor: pointer;
 }
 
-#our-friends .navigation .btn-pag:active {
+#our-friends .navigation .btn-pag.ready:active {
   background-color: #fbbf93;
+  cursor: pointer;
 }
 
 #our-friends .navigation .btn-pag.disabled {
   color: #CDCDCD;
   border: 2px solid #CDCDCD;
+  cursor: inherit;
 }
 
 #our-friends .navigation .btn-pag.disabled:hover {
