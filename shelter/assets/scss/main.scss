@@ -1,11 +1,14 @@
 @import "colors";
+@import "sizes";
 @import "mixins";
+@import "media";
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  width: 100%;
   overflow: auto;
   background: radial-gradient(#5B483A, #262425), #211F20;
 }
@@ -14,16 +17,20 @@ body {
   position: relative;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 60px 40px 0;
+  padding: $size-padding-top-standart $size-padding-side-standart 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 4px 4px #00000040;
+
+  @include screen-medium-standart {
+    padding: $size-padding-top-medium $size-padding-side-medium 0;
+  }
 }
 
 #header {
   width: 100%;
-  height: 60px;
+  height: $size-header-height;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -48,6 +55,7 @@ body {
   }
   
   .logo-subtitle {
+    padding-right: 1px;
     font-family: 'Arial';
     font-style: normal;
     font-size: 13px;
@@ -112,6 +120,7 @@ body {
 
 .main {
   flex: 1 1 auto;
+  width: 100%;
 }
 
 #start-screen {
@@ -125,13 +134,25 @@ body {
     width: 100%;
     background: url('../../assets/svg/noise_transparent@2x.svg'), 
       radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
+
+    @include screen-medium-standart {
+      height: 1165px;
+    }
   }
 
   .start-content {
     padding-top: 60px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 42px;
+
+    @include screen-medium-standart {
+      flex-direction: column;
+      justify-content: center;
+      gap: 100px;
+    }
+
   }
 
   .start-wrapper {
@@ -163,26 +184,35 @@ body {
 
     .btn {
       @include btn-primary(207px);
+      @include screen-medium-standart {
+        align-self: center;
+      }
     }
+
+    @include screen-medium-standart {
+      margin-top: 0;
+      align-self: center;
+    }
+
   }
 
   .start-puppy {
-    width: 668px;
-    height: 728px;
-    background: url('../../assets/images/start-screen-puppy.png') no-repeat;
+    margin-left: auto;
   }
 
 }
 
 .about {
-  margin: 0 -40px;
-  padding: 80px 215px 100px;
+  margin: 0 (-$size-padding-side-standart);
+  padding: 80px 0 100px;
   display: flex;
+  justify-content: center;
   gap: 120px;
   background-color: $color-light-xl;
 
   .wrapper {
     padding-top: 14px;
+    width: 430px;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -200,13 +230,24 @@ body {
       line-height: 160%;
       color: $color-dark-xl;
     }
+
+    @include screen-medium-standart {
+      padding-top: 0;
+    }
+  }
+
+  @include screen-medium-standart {
+    margin: 0 (-$size-padding-side-medium);
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 80px;
   }
 
 }
 
 #our-friends {
-  margin: 0 -40px;
-  padding: 80px 40px 100px;
+  margin: 0 (-$size-padding-side-standart);
+  padding: 79px 0 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -232,7 +273,10 @@ body {
     .btn.arrow-right {
       @include btn-arrow($direction: 'right');
     }
-    
+
+    @include screen-medium-standart {
+      gap: 12px;
+    }
   }
 
   .card-wrapper {
@@ -242,47 +286,26 @@ body {
     gap: 90px;
 
     .card {
-      padding-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      border-radius: 9px;
-      background-color: $color-light-s;
-      transition: all 0.5s;
-      cursor: pointer;
+      @include pet-card;
+    }
 
-      &:hover {
-        background-color: $color-light-xl;
-        .btn.pets {
-          background-color:  $color-primary-light;
-        }
-      }
-
-      img {
-        border-radius: 9px 9px 0 0;
-      }
-
-      .pet-name {
-        font-family: 'Georgia';
-        font-style: normal;
-        font-size: 20px;
-        line-height: 23px;
-        letter-spacing: 0.06em;
-        color: $color-dark-l;
-      }
-
-      .btn.pets {
-        @include btn-secondary(187px);
-      }
-
-
+    @include screen-medium-standart {
+      width: 580px;
+      height: 435px;
+      flex-wrap: wrap;
+      gap: 40px;
+      overflow: hidden;
     }
   }
 
   .btn.our-pets {
     @include btn-primary(261px);
   }
+
+  @include screen-medium-standart {
+    margin: 0 (-$size-padding-side-medium);
+  }
+
 }
 
 #help {
@@ -291,7 +314,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 60px;
+  gap: 59px;
   background-color: $color-light-xl;
 
   .title {
@@ -306,8 +329,12 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-between;
-    row-gap: 55px;
-    column-gap: 120px;
+    gap: 55px 120px;
+
+    @include screen-medium-standart {
+      width: 630px;
+      gap: 55px 60px;
+    }
   }
 
   .help-item {
@@ -324,20 +351,30 @@ body {
       letter-spacing: 0.06em;
       color: $color-dark-l;
     }
+    @include screen-medium-standart {
+      width: 170px;
+    }
+  }
+
+  @include screen-medium-standart {
+    margin: 0 (-$size-padding-side-medium);
+    padding: 80px 0 100px;
   }
 }
 
 #in-addition {
-  margin: 0 -40px;
-  padding: 78px 182px 100px;
+  margin: 0 (-$size-padding-side-standart);
+  padding: 80px 0 100px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 30px;
   background-color: $color-light-1;
 
   .add-wrapper {
     display: flex;
+    width: 380px;
     flex-direction: column;
     gap: 20px;
   }
@@ -375,7 +412,6 @@ body {
     color: $color-dark-l;
     transition: all 0.3s;
 
-
     &:hover {
       background: $color-primary-light;
       p.number {
@@ -398,6 +434,13 @@ body {
     display: flex;
     align-items: center;
     color: $color-dark-m;
+  }
+
+  @include screen-medium-standart {
+    margin: 0 (-$size-padding-side-medium);
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 58px;
   }
 }
 

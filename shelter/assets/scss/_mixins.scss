@@ -1,3 +1,6 @@
+@import "sizes";
+@import "media";
+
 @mixin main-title() {
   font-family: 'Georgia';
   font-style: normal;
@@ -134,18 +137,59 @@
   }
 }
 
+@mixin pet-card {
+
+  height: 435px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border-radius: 9px;
+  background-color: $color-light-s;
+  transition: all 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-light-xl;
+    .btn.pets {
+      background-color:  $color-primary-light;
+    }
+  }
+
+  img {
+    border-radius: 9px 9px 0 0;
+  }
+
+  .pet-name {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    color: $color-dark-l;
+  }
+
+  .btn.pets {
+    @include btn-secondary(187px);
+  }
+}
+
 
 @mixin footer {
+  margin: 0 (-$size-padding-side-standart);
   height: 350px;
-  width: calc(100% + 80px);
   padding: 0 40px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 160px;
   background: url('../../assets/svg/noise_transparent@2x.svg'), 
       radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
+
+  .footer-content {
+    display: flex;
+    gap: 160px;
+  }
 
   .contacts-wrapper {
     width: 278px;
@@ -224,5 +268,30 @@
   }
   .footer-puppy {
     align-self: flex-end;
+  }
+
+  @include screen-medium-standart {
+    margin: 0 (-$size-padding-side-medium);
+    padding-top: 30px;
+    width: calc(100% + #{$size-padding-side-medium * 2});
+    height: 640px;
+    flex-direction: column;
+    gap: 55px;
+
+    .footer-content {
+      gap: 60px;
+
+      .contacts {
+        margin-bottom: 10px;
+      }
+  
+      .locations {
+        margin-bottom: 10px;
+      }
+    }
+
+    .footer-puppy {
+      align-self: center;
+    }
   }
 }
