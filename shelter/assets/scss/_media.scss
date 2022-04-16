@@ -1,0 +1,9 @@
+@import "sizes";
+
+@mixin screen-medium-standart {
+  @media screen and (min-width: $size-media-medium) and (max-width: ($size-media-standart - 1px)){
+    @content;
+  }
+}
+
+
