@@ -15,7 +15,7 @@ body {
 
 .container {
   position: relative;
-  max-width: 1280px;
+  max-width: $size-width-standart;
   margin: 0 auto;
   padding: $size-padding-top-standart $size-padding-side-standart 0;
   display: flex;
@@ -309,7 +309,7 @@ body {
 }
 
 #help {
-  margin: 0 -40px;
+  margin: 0 (-$size-padding-side-standart);
   padding: 80px 87px 100px;
   display: flex;
   flex-direction: column;
