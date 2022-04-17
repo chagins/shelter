@@ -16,6 +16,10 @@ body {
 .container {
   position: relative;
   max-width: $size-width-standart;
+
+  min-height: 100vh; //////////////
+  overflow-x: hidden;
+
   margin: 0 auto;
   padding: $size-padding-top-standart $size-padding-side-standart 0;
   display: flex;
@@ -26,22 +30,37 @@ body {
   @include screen-medium-standart {
     padding: $size-padding-top-medium $size-padding-side-medium 0;
   }
+
+  @include screen-small-medium {
+    padding: $size-padding-top-small $size-padding-side-small 0;
+  }
 }
 
 #header {
+  position: relative;
   width: 100%;
   height: $size-header-height;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+
+  @include screen-small-medium {
+    justify-content: flex-end;
+    gap: 42px;
+    padding-right: 42px;
+  }
 }
 
 .logo {
+  z-index: 2;
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 7px;
   cursor: pointer;
 
   .logo-title {
@@ -66,7 +85,7 @@ body {
 }
 
 .menu {
-  padding-right: 2px;
+  // padding-right:1px;
   padding-bottom: 2px;
 
   .menu-list {
@@ -76,6 +95,26 @@ body {
     justify-content: flex-end;
     align-items: center;
     gap: 35px;
+
+    @include screen-small-medium {
+      z-index: 1;
+      position: absolute;
+      top: (-$size-padding-top-small);
+      right: (-$size-padding-side-small - $size-media-small);
+      padding-top: 161px + $size-header-height + $size-padding-top-small;
+      width: $size-media-small;
+      height: 100vh;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      background-color: $color-dark-3xl;
+      transition: right 0.3s;
+      
+      &.active {
+        right: (-$size-padding-side-small);
+      }
+    }
   }
 
   .menu-line {
@@ -83,10 +122,16 @@ body {
     font-style: normal;
     font-size: 15px;
     line-height: 160%;
+    color: $color-light-s;
     transition: transform 0.25s;
 
     &:active {
       transform: translateY(1px);
+    }
+
+    @include screen-small-medium {
+      font-size: 32px;
+      line-height: 160%;
     }
   }
 
@@ -97,7 +142,7 @@ body {
     &::after {
       position: absolute;
       left: 0;
-      bottom: -5px;
+      bottom: -7px;
       width: 100%;
       height: 3px;
       transform: scaleX(0);
@@ -114,6 +159,66 @@ body {
       transform-origin: bottom left;
       transition: transform 0.25s, color 0.5s;
       color: $color-light-s;
+    }
+  }
+
+  .burger {
+    z-index: 2;
+    position: relative;
+    display: none;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+
+    span {
+      width: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    span,
+    span::before,
+    span::after {
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      display: block;
+      transition: transform 0.25s;
+      background-color: $color-primary;
+    }
+
+    span::before {
+      content: "";
+      top: -10px;
+      transition: top 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    span::after {
+      content: "";
+      bottom: -10px;
+      transition: bottom 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    &.active span{
+      transform: rotate(90deg);
+    }
+
+    &.active span:before{
+      content: "";
+      top: 0px;
+      transform: translateY(10px);
+      transition: top 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    &.active span:after{
+      content: "";
+      bottom: 0;
+      transform: translateY(-10px);
+      transition: bottom 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @include screen-small-medium {
+      display: block;
     }
   }
 }
@@ -138,6 +243,10 @@ body {
     @include screen-medium-standart {
       height: 1165px;
     }
+
+    @include screen-small-medium {
+      height: 823px;
+    }
   }
 
   .start-content {
@@ -151,6 +260,12 @@ body {
       flex-direction: column;
       justify-content: center;
       gap: 100px;
+    }
+
+    @include screen-small-medium {
+      flex-direction: column;
+      justify-content: center;
+      gap: 105px;
     }
 
   }
@@ -170,6 +285,14 @@ body {
       font-size: 44px;
       line-height: 130%;
       color: $color-light-xl;
+
+      @include screen-small-medium {
+        width: 260px;
+        height: auto;
+        text-align: center;
+        font-size: 25px;
+        letter-spacing: 0.06em;
+      }
     }
 
     .start-text {
@@ -180,10 +303,17 @@ body {
       font-size: 15px;
       line-height: 160%;
       color: $color-dark-s;
+
+      @include screen-small-medium {
+        width: 300px;
+        height: auto;
+        text-align: center;
+      }
     }
 
     .btn {
       @include btn-primary(207px);
+
       @include screen-medium-standart {
         align-self: center;
       }
@@ -194,6 +324,13 @@ body {
       align-self: center;
     }
 
+    @include screen-small-medium {
+      margin-top: 0;
+      align-self: center;
+      align-items: center;
+      width: 300px;
+      text-align: center;
+    }
   }
 
   .start-puppy {
@@ -220,6 +357,11 @@ body {
     .title {
       width: 370px;
       @include main-title();
+      @include screen-small-medium {
+        width: 270px;
+        text-align: center;
+        font-size: 25px;
+      }
     }
 
     .text {
@@ -234,6 +376,13 @@ body {
     @include screen-medium-standart {
       padding-top: 0;
     }
+
+    @include screen-small-medium {
+      padding-top: 0;
+      width: 270px;
+      gap: 22px;
+      text-align: justify;
+    }
   }
 
   @include screen-medium-standart {
@@ -243,6 +392,13 @@ body {
     gap: 80px;
   }
 
+  @include screen-small-medium {
+    margin: 0 (-$size-padding-side-small);
+    padding: 42px 0 42px;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 42px;
+  }
 }
 
 #our-friends {
@@ -258,9 +414,15 @@ body {
     width: 400px;
     text-align: center;
     @include main-title();
+
+    @include screen-small-medium {
+      width: 300px;
+      font-size: 25px;
+    }
   }
 
   .slider {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -268,14 +430,33 @@ body {
 
     .btn.arrow-left {
       @include btn-arrow($direction: 'left');
+
+      @include screen-small-medium {
+        position: absolute;
+        bottom: 0;
+        left: 43px;
+      }
     }
 
     .btn.arrow-right {
       @include btn-arrow($direction: 'right');
+
+      @include screen-small-medium {
+        position: absolute;
+        bottom: 0;
+        right: 43px;
+      }
     }
 
     @include screen-medium-standart {
       gap: 12px;
+    }
+
+    @include screen-small-medium {
+      height: 507px;
+      flex-direction: column;
+      justify-content: start;
+      gap: 20px;
     }
   }
 
@@ -287,6 +468,18 @@ body {
 
     .card {
       @include pet-card;
+
+      @include screen-medium-standart {
+        &:nth-last-child() {
+          display: none;
+        }
+      }
+
+      @include screen-small-medium {
+        &:nth-last-child(-n+2){
+          display: none;
+        }
+      }
     }
 
     @include screen-medium-standart {
@@ -296,6 +489,10 @@ body {
       gap: 40px;
       overflow: hidden;
     }
+
+    @include screen-small-medium {
+      order: -1;
+    }
   }
 
   .btn.our-pets {
@@ -304,6 +501,12 @@ body {
 
   @include screen-medium-standart {
     margin: 0 (-$size-padding-side-medium);
+  }
+
+  @include screen-small-medium {
+    margin: 0 (-$size-padding-side-small);
+    padding: 42px 0 42px;
+    gap: 42px;
   }
 
 }
@@ -321,6 +524,11 @@ body {
     width: 310px;
     text-align: center;
     @include main-title();
+
+    @include screen-small-medium {
+      width: 270px;
+      font-size: 25px;
+    }
   }
 
   .help-wrapper {
@@ -334,6 +542,13 @@ body {
     @include screen-medium-standart {
       width: 630px;
       gap: 55px 60px;
+    }
+
+    @include screen-small-medium {
+      column-gap: 30px;
+      row-gap: 32px;
+      justify-content: flex-start;
+      padding: 0 ($size-padding-side-small + 5px);
     }
   }
 
@@ -350,15 +565,37 @@ body {
       line-height: 115%;
       letter-spacing: 0.06em;
       color: $color-dark-l;
+
+      @include screen-small-medium {
+        font-size: 15px;
+      }
     }
+
     @include screen-medium-standart {
       width: 170px;
+    }
+
+    @include screen-small-medium {
+      gap: 17px;
+      width: 130px;
+      height: 87px;
+      justify-content: center;
+      img {
+        transform: scale(0.83);
+      }
     }
   }
 
   @include screen-medium-standart {
     margin: 0 (-$size-padding-side-medium);
     padding: 80px 0 100px;
+  }
+
+  @include screen-small-medium {
+    margin: 0 (-$size-padding-side-small);
+    padding: 42px 0 42px;
+    align-items: center;
+    gap: 35px;
   }
 }
 
@@ -377,20 +614,40 @@ body {
     width: 380px;
     flex-direction: column;
     gap: 20px;
+
+    @include screen-small-medium {
+      width: 300px;
+      align-items: center;
+      gap: 22px;
+
+    }
   }
 
   .title {
     width: 300px;
     @include main-title();
+
+    @include screen-small-medium {
+      width: 220px;
+      text-align: center;
+      font-size: 25px;
+    }
   }
 
   .subhead {
     font-family: 'Georgia';
     font-style: normal;
     font-size: 15px;
-    line-height: 110%;
+    // line-height: 110%;
     letter-spacing: 0.06em;
     color: $color-dark-l;
+
+    @include screen-small-medium {
+      text-align: center;
+      font-size: 15px;
+      line-height: 100%;
+      letter-spacing: 0.001em;
+    }
   }
 
   .credit-card {
@@ -422,7 +679,13 @@ body {
     &:active {
       background: darken($color-primary-light, 10%);
       transform: translateY(1px);
-    } 
+    }
+
+    @include screen-small-medium {
+      width: 281px;
+      font-size: 15px;
+      line-height: 115%;
+    }
   }
 
   p.legal {
@@ -434,6 +697,12 @@ body {
     display: flex;
     align-items: center;
     color: $color-dark-m;
+
+    @include screen-small-medium {
+      width: 280px;
+      text-align: justify;
+      // letter-spacing: ;
+    }
   }
 
   @include screen-medium-standart {
@@ -441,6 +710,14 @@ body {
     flex-direction: column-reverse;
     align-items: center;
     gap: 58px;
+  }
+
+  @include screen-small-medium {
+    margin: 0 (-$size-padding-side-small);
+    padding: 42px 0 42px;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 42px;
   }
 }
 
