@@ -44,29 +44,16 @@ body {
   align-items: center;
   background-color: $color-light-xl;
 
-  @include screen-medium-standart {
-    width: calc(100% + #{$size-padding-side-medium * 2});
-    padding: 0 $size-padding-side-medium;
+  .logo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-end;
+    cursor: pointer;
   }
-
-  @include screen-small-medium {
-    padding: 0 $size-padding-side-small;
-    padding-right: 50px;
-    width: calc(100% + #{$size-padding-side-small * 2});
-    justify-content: flex-end;
-    gap: 42px;
-  }
-}
-
-.logo {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: flex-end;
-  cursor: pointer;
-
+  
   .logo-title {
     margin: 0;
     font-family: 'Georgia';
@@ -79,7 +66,7 @@ body {
   
   .logo-subtitle {
     padding-right: 1px;
-
+  
     font-family: 'Arial';
     font-style: normal;
     font-size: 13px;
@@ -87,12 +74,12 @@ body {
     letter-spacing: 0.1em;
     color: $color-dark-l;
   }
-}
 
-.menu {
-  padding-right: 2px;
-  padding-bottom: 2px;
-
+  .menu {
+    padding-right: 2px;
+    padding-bottom: 2px;
+  }
+  
   .menu-list {
     height: 100%;
     display: flex;
@@ -100,28 +87,8 @@ body {
     justify-content: flex-end;
     align-items: center;
     gap: 35px;
-
-    @include screen-small-medium {
-      z-index: 1;
-      position: absolute;
-      top: (-$size-padding-top-small);
-      right: (-$size-padding-side-small - $size-media-small);
-      padding-top: 161px + $size-header-height + $size-padding-top-small;
-      width: $size-media-small;
-      height: 100vh;
-      justify-content: flex-start;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-      background-color: $color-dark-3xl;
-      transition: right 0.3s;
-      
-      &.active {
-        right: (-$size-padding-side-small);
-      }
-    }
   }
-
+  
   .menu-line {
     font-family: 'Arial';
     font-style: normal;
@@ -129,17 +96,12 @@ body {
     line-height: 160%;
     
     transition: transform 0.25s;
-
+  
     &:active {
       transform: translateY(1px);
     }
-
-    @include screen-small-medium {
-      font-size: 32px;
-      line-height: 160%;
-    }
   }
-
+  
   .menu-link {
     position: relative;
     color: $color-dark-l;
@@ -156,7 +118,7 @@ body {
       background-color: $color-primary;
       content: '';
     }
-
+  
     &.active,
     &:hover::after,
     &.active::after {
@@ -164,20 +126,69 @@ body {
       transform-origin: bottom left;
       transition: transform 0.25s, color 0.5s;
     }
-
-    @include screen-small-medium {
-      color: $color-light-s;
-    }
   }
-
+  
   .burger {
     @include burger($color: $color-black);
+  }
+
+  @include screen-medium-standart {
+    position: fixed;
+    width: calc(100% + #{$size-padding-side-medium * 2});
+    width: 100%;
+    padding: 0 $size-padding-side-medium;
+  }
+
+  @include screen-small-medium {
+    position: fixed;
+    padding: 0 $size-padding-side-small;
+    padding-right: 60px;
+    width: calc(100% + #{$size-padding-side-small * 2});
+    justify-content: flex-end;
+    gap: 42px;
+
+    .menu-list {
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      right: (-$size-padding-side-small - $size-media-small);
+      padding-top: 161px + $size-header-height + $size-padding-top-small;
+      width: $size-media-small;
+      height: 100vh;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      background-color: $color-dark-3xl;
+      transition: right 0.3s;
+      
+      &.active {
+        right: $size-padding-side-small;
+      }
+    }
+
+    .menu-line {
+      font-size: 32px;
+      line-height: 160%;
+    }
+
+    .menu-link {
+      color: $color-light-s;
+    }
   }
 }
 
 .main {
   flex: 1 1 auto;
   width: 100%;
+
+  @include screen-medium-standart {
+    padding-top: 120px;
+  }
+
+  @include screen-small-medium {
+    padding-top: 120px;
+  }
 }
 
 #our-friends {
@@ -193,11 +204,6 @@ body {
     width: 400px;
     text-align: center;
     @include main-title();
-
-    @include screen-small-medium {
-      width: 300px;
-      font-size: 25px;
-    }
   }
 
   .card-wrapper {
@@ -208,37 +214,10 @@ body {
     flex-wrap: wrap;
     column-gap: 40px;
     row-gap: 30px;
+  }
 
-    .card {
-      @include pet-card;
-
-      @include screen-medium-standart {
-        &:nth-last-child(-n+2){
-          display: none;
-        }
-      }
-
-      @include screen-small-medium {
-        &:nth-last-child(-n+5){
-          display: none;
-        }
-      }
-    }
-
-    @include screen-medium-standart {
-      padding: 0;
-      height: 1365px;
-      width: 580px;
-      overflow: hidden;
-    }
-
-    @include screen-small-medium {
-      padding: 0;
-      height: 1365px;
-      width: 270px;
-      overflow: hidden;
-    }
-
+  .card {
+    @include pet-card;
   }
 
   .navigation {
@@ -246,31 +225,62 @@ body {
     flex-direction: row;
     justify-content: center;
     gap: 20px;
-
-    .btn-pag {
-      @include btn-paginator();
-    } 
-
-    @include screen-medium-standart {
-      padding-top: 10px;
-      padding-bottom: 5px;
-    }
-
-    @include screen-small-medium {
-      gap: 10px;
-    }
   }
+
+  .btn-pag {
+    @include btn-paginator();
+  } 
 
   @include screen-medium-standart {
     margin: 0 (-$size-padding-side-medium);
     padding: 80px 0 70px;
     gap: 30px;
+
+    .card-wrapper {
+      padding: 0;
+      height: 1365px;
+      width: 580px;
+      overflow: hidden;
+    }
+
+    .card {
+      &:nth-last-child(-n+2){
+        display: none;
+      }
+    }
+
+    .navigation {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
   }
 
   @include screen-small-medium {
     margin: 0 (-$size-padding-side-small);
-    padding: 42px 0 42px;
+    padding: 42px 0 41px;
     gap: 42px;
+
+    .title {
+      width: 300px;
+      font-size: 25px;
+    }
+
+    .card-wrapper {
+      padding: 0;
+      height: 1365px;
+      width: 270px;
+      overflow: hidden;
+    }
+
+    .card {
+      &:nth-last-child(-n+5){
+        display: none;
+      }
+    }
+
+    .navigation {
+      gap: 10px;
+    }
   }
 }
 

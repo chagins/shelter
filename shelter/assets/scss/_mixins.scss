@@ -59,7 +59,6 @@
 }
 
 @mixin btn-arrow($direction) {
-
   width: 52px;
   height: 52px;
   border: 2px solid $color-primary;
@@ -89,7 +88,6 @@
 }
 
 @mixin btn-paginator() {
-
   width: 52px;
   height: 52px;
   padding-bottom: 1px;
@@ -138,7 +136,6 @@
 }
 
 @mixin pet-card {
-
   height: 435px;
   display: flex;
   flex-direction: column;
@@ -196,36 +193,35 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+  }
 
-    .title {
-      @include main-title();
-      width: 280px;
-      color: $color-light-xl;
-    }
+  .title {
+    @include main-title();
+    width: 280px;
+    color: $color-light-xl;
+  }
 
-    .contacts {
-      margin-bottom: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
 
-      .contact-link {
-        height: 32px;
-        width: fit-content;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        font-family: 'Georgia';
-        font-style: normal;
-        font-size: 20px;
-        line-height: 115%;
-        letter-spacing: 0.06em;
-        color: $color-primary;
-      }
+  .contact-link {
+    height: 32px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: $color-primary;
 
-      .contact-link:hover {
-        color: $color-light-1;
-      }
+    &:hover {
+      color: $color-light-1;
     }
   }
 
@@ -234,36 +230,29 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+  }
 
-    .title {
-      @include main-title();
-      width: 280px;
-      color: $color-light-xl;
-    }
+  .locations {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
 
-    .locations {
-      margin-bottom: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+  .localtion-link {
+    height: 32px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: $color-primary;
 
-      .localtion-link {
-        height: 32px;
-        width: fit-content;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        font-family: 'Georgia';
-        font-style: normal;
-        font-size: 20px;
-        line-height: 115%;
-        letter-spacing: 0.06em;
-        color: $color-primary;
-      }
-
-      .localtion-link:hover {
-        color: $color-light-1;
-      }
+    &:hover {
+      color: $color-light-1;
     }
   }
 
@@ -277,18 +266,11 @@
     width: calc(100% + #{$size-padding-side-medium * 2});
     height: 640px;
     flex-direction: column;
-    gap: 55px;
+    justify-content: flex-start;
+    gap: 65px;
 
     .footer-content {
       gap: 60px;
-
-      .contacts {
-        margin-bottom: 10px;
-      }
-  
-      .locations {
-        margin-bottom: 10px;
-      }
     }
 
     .footer-puppy {
@@ -309,37 +291,30 @@
       flex-direction: column;
       align-items: center;
       gap: 40px;
+    }
 
-      .contacts-wrapper {
-        align-items: center;
-      }
+    .contacts-wrapper {
+      align-items: center;
+    }
 
-      .locations-wrapper {
-        align-items: center;
-      }
+    .title {
+      width: 270px;
+      font-size: 25px;
+      text-align: center;
+    }
 
-      .title {
-        width: 270px;
-        font-size: 25px;
-        text-align: center;
-      }
+    .contact-link:last-child {
+      width: 245px;
+      padding-left: 5px;
+    }
 
-      .contacts {
-        margin-bottom: 0;
+    .locations-wrapper {
+      align-items: center;
+    }
 
-        .contact-link:last-child {
-          gap: 20px;
-          padding-left: 6px;
-        }
-
-      }
-  
-      .locations {
-        margin-bottom: 0;
-        padding-top: 6px;
-        padding-right: 3px;
-        gap: 45px;
-      }
+    .localtion-link {
+      height: fit-content;
+      width: 300px;
     }
 
     .footer-puppy {
