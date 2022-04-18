@@ -1420,6 +1420,10 @@ body {
   #footer .footer-content .contacts {
     margin-bottom: 0;
   }
+  #footer .footer-content .contacts .contact-link:last-child {
+    gap: 20px;
+    padding-left: 6px;
+  }
   #footer .footer-content .locations {
     margin-bottom: 0;
     padding-top: 6px;

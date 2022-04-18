@@ -16,6 +16,8 @@ body {
 .container {
   position: relative;
   max-width: $size-width-standart;
+  min-height: 100vh;
+  overflow-x: hidden;
   margin: 0 auto;
   padding: 0 $size-padding-side-standart 0;
   display: flex;
@@ -26,9 +28,14 @@ body {
   @include screen-medium-standart {
     padding: 0 $size-padding-side-medium;
   }
+
+  @include screen-small-medium {
+    padding: 0 $size-padding-side-small;
+  }
 }
 
 #header {
+  position: relative;
   padding: 0 $size-padding-side-standart;
   width: calc(100% + #{$size-padding-side-standart * 2});
   height: ($size-header-height * 2);
@@ -40,6 +47,14 @@ body {
   @include screen-medium-standart {
     width: calc(100% + #{$size-padding-side-medium * 2});
     padding: 0 $size-padding-side-medium;
+  }
+
+  @include screen-small-medium {
+    padding: 0 $size-padding-side-small;
+    padding-right: 50px;
+    width: calc(100% + #{$size-padding-side-small * 2});
+    justify-content: flex-end;
+    gap: 42px;
   }
 }
 
@@ -85,6 +100,26 @@ body {
     justify-content: flex-end;
     align-items: center;
     gap: 35px;
+
+    @include screen-small-medium {
+      z-index: 1;
+      position: absolute;
+      top: (-$size-padding-top-small);
+      right: (-$size-padding-side-small - $size-media-small);
+      padding-top: 161px + $size-header-height + $size-padding-top-small;
+      width: $size-media-small;
+      height: 100vh;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      background-color: $color-dark-3xl;
+      transition: right 0.3s;
+      
+      &.active {
+        right: (-$size-padding-side-small);
+      }
+    }
   }
 
   .menu-line {
@@ -92,10 +127,16 @@ body {
     font-style: normal;
     font-size: 15px;
     line-height: 160%;
+    
     transition: transform 0.25s;
 
     &:active {
       transform: translateY(1px);
+    }
+
+    @include screen-small-medium {
+      font-size: 32px;
+      line-height: 160%;
     }
   }
 
@@ -122,8 +163,15 @@ body {
       transform: scaleX(1);
       transform-origin: bottom left;
       transition: transform 0.25s, color 0.5s;
-      color: $color-dark-3xl;
     }
+
+    @include screen-small-medium {
+      color: $color-light-s;
+    }
+  }
+
+  .burger {
+    @include burger($color: $color-black);
   }
 }
 
@@ -145,6 +193,11 @@ body {
     width: 400px;
     text-align: center;
     @include main-title();
+
+    @include screen-small-medium {
+      width: 300px;
+      font-size: 25px;
+    }
   }
 
   .card-wrapper {
@@ -164,12 +217,25 @@ body {
           display: none;
         }
       }
+
+      @include screen-small-medium {
+        &:nth-last-child(-n+5){
+          display: none;
+        }
+      }
     }
 
     @include screen-medium-standart {
       padding: 0;
       height: 1365px;
       width: 580px;
+      overflow: hidden;
+    }
+
+    @include screen-small-medium {
+      padding: 0;
+      height: 1365px;
+      width: 270px;
       overflow: hidden;
     }
 
@@ -188,7 +254,10 @@ body {
     @include screen-medium-standart {
       padding-top: 10px;
       padding-bottom: 5px;
+    }
 
+    @include screen-small-medium {
+      gap: 10px;
     }
   }
 
@@ -196,6 +265,12 @@ body {
     margin: 0 (-$size-padding-side-medium);
     padding: 80px 0 70px;
     gap: 30px;
+  }
+
+  @include screen-small-medium {
+    margin: 0 (-$size-padding-side-small);
+    padding: 42px 0 42px;
+    gap: 42px;
   }
 }
 
