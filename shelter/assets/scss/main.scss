@@ -163,63 +163,7 @@ body {
   }
 
   .burger {
-    z-index: 2;
-    position: relative;
-    display: none;
-    width: 30px;
-    height: 22px;
-    cursor: pointer;
-
-    span {
-      width: 30px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    span,
-    span::before,
-    span::after {
-      position: absolute;
-      width: 30px;
-      height: 2px;
-      display: block;
-      transition: transform 0.25s;
-      background-color: $color-primary;
-    }
-
-    span::before {
-      content: "";
-      top: -10px;
-      transition: top 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    span::after {
-      content: "";
-      bottom: -10px;
-      transition: bottom 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    &.active span{
-      transform: rotate(90deg);
-    }
-
-    &.active span:before{
-      content: "";
-      top: 0px;
-      transform: translateY(10px);
-      transition: top 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    &.active span:after{
-      content: "";
-      bottom: 0;
-      transform: translateY(-10px);
-      transition: bottom 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    @include screen-small-medium {
-      display: block;
-    }
+    @include burger($color: $color-primary);
   }
 }
 

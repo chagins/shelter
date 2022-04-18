@@ -26,6 +26,9 @@
           <li class="menu-line"><a href="../main/index.html#help" class="menu-link">Help the shelter</a></li>
           <li class="menu-line"><a href="#footer" class="menu-link">Contacts</a></li>
         </ul>
+        <div class="burger" title="menu">
+          <span></span>
+        </div>
       </nav>
     </header>
     <main class="main">
@@ -115,7 +118,16 @@
           </div>
         </div>
       </div>
-      <img class="footer-puppy" src="../../assets/images/footer-puppy.png" alt="puppy" width="300" height="310">
+      <img 
+        class="footer-puppy" 
+        src="../../assets/images/footer-puppy.png" 
+        alt="footer puppy"
+        srcset="
+          ../../assets/images/footer-puppy-320.png 260w,
+          ../../assets/images/footer-puppy.png 505w"
+        sizes="
+          (max-width: 767px) 260px,
+          (min-width: 768px) 505px">
     </footer>
   </div>
 
