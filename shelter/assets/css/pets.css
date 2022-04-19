@@ -42,9 +42,9 @@ body {
 }
 
 #header {
-  position: relative;
+  position: fixed;
   padding: 0 40px;
-  width: calc(100% + 80px);
+  width: 1280px;
   height: 120px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -253,7 +253,6 @@ body {
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   #header {
-    position: fixed;
     width: calc(100% + 60px);
     width: 100%;
     padding: 0 30px;
@@ -262,7 +261,6 @@ body {
 
 @media screen and (max-width: 767px) {
   #header {
-    position: fixed;
     padding: 0 10px;
     padding-right: 60px;
     width: calc(100% + 20px);
@@ -307,22 +305,11 @@ body {
 }
 
 .main {
+  padding-top: 120px;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   width: 100%;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .main {
-    padding-top: 120px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .main {
-    padding-top: 120px;
-  }
 }
 
 #our-friends {

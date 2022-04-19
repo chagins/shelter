@@ -35,9 +35,9 @@ body {
 }
 
 #header {
-  position: relative;
+  position: fixed;
   padding: 0 $size-padding-side-standart;
-  width: calc(100% + #{$size-padding-side-standart * 2});
+  width: 1280px;
   height: ($size-header-height * 2);
   display: flex;
   justify-content: space-between;
@@ -133,14 +133,12 @@ body {
   }
 
   @include screen-medium-standart {
-    position: fixed;
     width: calc(100% + #{$size-padding-side-medium * 2});
     width: 100%;
     padding: 0 $size-padding-side-medium;
   }
 
   @include screen-small-medium {
-    position: fixed;
     padding: 0 $size-padding-side-small;
     padding-right: 60px;
     width: calc(100% + #{$size-padding-side-small * 2});
@@ -179,16 +177,9 @@ body {
 }
 
 .main {
+  padding-top: 120px;
   flex: 1 1 auto;
   width: 100%;
-
-  @include screen-medium-standart {
-    padding-top: 120px;
-  }
-
-  @include screen-small-medium {
-    padding-top: 120px;
-  }
 }
 
 #our-friends {
