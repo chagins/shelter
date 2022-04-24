@@ -80,26 +80,19 @@
       </section>
       <section id="our-friends">
         <h2 class="title">Our friends who <br> are looking for a house</h2>        
-        <div class="slider">
-          <button class="btn arrow-left"></button>
-          <div class="card-wrapper">
-            <div class="card">
-              <img src="../../assets/images/pets-katrine.jpg" alt="pets-katrine" width="270" height="270">
-              <p class="pet-name">Katrine</p>
-              <button  class="btn pets" onclick="location.href='#fake'">Learn more</button>
-            </div>
-            <div class="card">
-              <img src="../../assets/images/pets-jennifer.jpg" alt="pets-jennifer" width="270" height="270">
-              <p class="pet-name">Jennifer</p>
-              <button  class="btn pets" onclick="location.href='#fake'">Learn more</button>
-            </div>
-            <div class="card">
-              <img src="../../assets/images/pets-woody.jpg" alt="pets-woody" width="270" height="270">
-              <p class="pet-name">Woody</p>
-              <button  class="btn pets" onclick="location.href='#fake'">Learn more</button>
+        <div class="friends-wrapper">
+          <button id="btn-left"></button>
+          <div class="slider-wrapper">
+            <div class="slider">
+              <div class="cards-group" id="cards-left">
+              </div>
+              <div class="cards-group" id="cards-active">
+              </div>
+              <div class="cards-group" id="cards-right">
+              </div>
             </div>
           </div>
-          <button class="btn arrow-right"></button>
+          <button id="btn-right"></button>
         </div>
         <button  class="btn our-pets" onclick="location.href='../pets/index.html'">Get to know the rest</button>
       </section>
@@ -213,6 +206,6 @@
     </footer>
   </div> 
 
-  <script src="./index.js"></script>
+  <script type="module" src="./index.js"></script>
 </body>
 </html>

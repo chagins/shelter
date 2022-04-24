@@ -585,7 +585,7 @@ body {
   }
 }
 
-#our-friends .slider {
+#our-friends .friends-wrapper {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -599,7 +599,7 @@ body {
   gap: 53px;
 }
 
-#our-friends .btn.arrow-left {
+#our-friends #btn-left {
   width: 52px;
   height: 52px;
   border: 2px solid #F1CDB3;
@@ -614,15 +614,15 @@ body {
   background-image: url("../../assets/svg/arrow.svg");
 }
 
-#our-friends .btn.arrow-left:hover {
+#our-friends #btn-left:hover {
   background-color: #FDDCC4;
 }
 
-#our-friends .btn.arrow-left:active {
+#our-friends #btn-left:active {
   background-color: #fbbf93;
 }
 
-#our-friends .btn.arrow-right {
+#our-friends #btn-right {
   width: 52px;
   height: 52px;
   border: 2px solid #F1CDB3;
@@ -639,25 +639,32 @@ body {
           transform: rotate(-180deg);
 }
 
-#our-friends .btn.arrow-right:hover {
+#our-friends #btn-right:hover {
   background-color: #FDDCC4;
 }
 
-#our-friends .btn.arrow-right:active {
+#our-friends #btn-right:active {
   background-color: #fbbf93;
 }
 
-#our-friends .card-wrapper {
+#our-friends .slider-wrapper {
+  width: 990px;
+  height: 435px;
+  overflow: hidden;
+}
+
+#our-friends .slider {
+  position: relative;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+}
+
+#our-friends .cards-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   gap: 90px;
 }
 
@@ -753,23 +760,101 @@ body {
           transform: translateY(1px);
 }
 
+#our-friends .transition-left {
+  -webkit-animation-name: move-left;
+          animation-name: move-left;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes move-left {
+  from {
+    left: -990px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+@keyframes move-left {
+  from {
+    left: -990px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+#our-friends .transition-right {
+  -webkit-animation-name: move-right;
+          animation-name: move-right;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes move-right {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -990px;
+  }
+}
+
+@keyframes move-right {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -990px;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   #our-friends {
     margin: 0 -30px;
   }
-  #our-friends .card-wrapper {
+  #our-friends .slider-wrapper {
     width: 580px;
     height: 435px;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+  }
+  #our-friends .cards-group {
     gap: 40px;
-    overflow: hidden;
   }
-  #our-friends .card:nth-last-child() {
-    display: none;
-  }
-  #our-friends .slider {
+  #our-friends .friends-wrapper {
     gap: 12px;
+  }
+  @-webkit-keyframes move-left {
+    from {
+      left: -580px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+  @keyframes move-left {
+    from {
+      left: -580px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+  @-webkit-keyframes move-right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -580px;
+    }
+  }
+  @keyframes move-right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -580px;
+    }
   }
 }
 
@@ -779,15 +864,11 @@ body {
     padding: 42px 0 42px;
     gap: 41px;
   }
-  #our-friends .card-wrapper {
-    -webkit-box-ordinal-group: 0;
-        -ms-flex-order: -1;
-            order: -1;
+  #our-friends .slider-wrapper {
+    height: 435px;
+    width: 270px;
   }
-  #our-friends .card:nth-last-child(-n+2) {
-    display: none;
-  }
-  #our-friends .slider {
+  #our-friends .friends-wrapper {
     height: 507px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -798,12 +879,44 @@ body {
             justify-content: start;
     gap: 20px;
   }
-  #our-friends .btn.arrow-left {
+  @-webkit-keyframes move-left {
+    from {
+      left: -270px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+  @keyframes move-left {
+    from {
+      left: -270px;
+    }
+    to {
+      left: 0px;
+    }
+  }
+  @-webkit-keyframes move-right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -270px;
+    }
+  }
+  @keyframes move-right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -270px;
+    }
+  }
+  #our-friends #btn-left {
     position: absolute;
     bottom: 0;
     left: 43px;
   }
-  #our-friends .btn.arrow-right {
+  #our-friends #btn-right {
     position: absolute;
     bottom: 0;
     right: 43px;
