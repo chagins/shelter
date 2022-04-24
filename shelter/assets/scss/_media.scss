@@ -9,7 +9,6 @@
 
 // 320px <= width < 768px
 @mixin screen-small-medium {
-  //@media screen and (min-width: $size-media-small) and (max-width: ($size-media-medium - 1px)){
   @media screen and (max-width: ($size-media-medium - 1px)){
     @content;
   }

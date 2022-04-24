@@ -368,7 +368,7 @@ body {
     }
   }
 
-  .slider {
+  .friends-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
@@ -376,18 +376,28 @@ body {
     gap: 53px;
   }
 
-  .btn.arrow-left {
+  #btn-left{
     @include btn-arrow($direction: 'left');
   }
 
-  .btn.arrow-right {
+  #btn-right {
     @include btn-arrow($direction: 'right');
   }
 
-  .card-wrapper {
+  .slider-wrapper {
+    width: 990px;
+    height: 435px;
+    overflow: hidden;
+  }
+
+  .slider {
+    position: relative;
+    left: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+  }
+
+  .cards-group {
+    display: flex;
     gap: 90px;
   }
 
@@ -398,26 +408,51 @@ body {
   .btn.our-pets {
     @include btn-primary(261px);
   }
+  
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 1s;
+  }
+  
+  @keyframes move-left {
+    from {left: -990px;}
+    to {left: 0px;}
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+  }
+
+  @keyframes move-right {
+    from {left: 0px;}
+    to {left: -990px;}
+  }
+  
 
   @include screen-medium-standart {
     margin: 0 (-$size-padding-side-medium);
 
-    .card-wrapper {
+    .slider-wrapper {
       width: 580px;
       height: 435px;
-      flex-wrap: wrap;
+    }
+    .cards-group {
       gap: 40px;
-      overflow: hidden;
     }
 
-    .card {
-      &:nth-last-child() {
-        display: none;
-      }
-    }
-
-    .slider {
+    .friends-wrapper {
       gap: 12px;
+    }
+
+    @keyframes move-left {
+      from {left: -580px;}
+      to {left: 0px;}
+    }
+  
+    @keyframes move-right {
+      from {left: 0px;}
+      to {left: -580px;}
     }
   }
 
@@ -426,30 +461,35 @@ body {
     padding: 42px 0 42px;
     gap: 41px;
 
-    .card-wrapper {
-      order: -1;
+    .slider-wrapper {
+      height: 435px;
+      width: 270px;
     }
 
-    .card {
-      &:nth-last-child(-n+2){
-        display: none;
-      }
-    }
-
-    .slider {
+    .friends-wrapper {
       height: 507px;
       flex-direction: column;
       justify-content: start;
       gap: 20px;
     }
 
-    .btn.arrow-left {
+    @keyframes move-left {
+      from {left: -270px;}
+      to {left: 0px;}
+    }
+  
+    @keyframes move-right {
+      from {left: 0px;}
+      to {left: -270px;}
+    }
+
+    #btn-left{
       position: absolute;
       bottom: 0;
       left: 43px;
     }
 
-    .btn.arrow-right {
+    #btn-right {
       position: absolute;
       bottom: 0;
       right: 43px;
