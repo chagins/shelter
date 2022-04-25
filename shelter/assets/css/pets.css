@@ -8,6 +8,10 @@ body {
   background: radial-gradient(#5B483A, #262425), #211F20;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 .container {
   position: relative;
   max-width: 1280px;
@@ -59,6 +63,8 @@ body {
 }
 
 #header .logo {
+  z-index: 3;
+  position: relative;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -170,6 +176,17 @@ body {
   transition: transform 0.25s, color 0.5s, -webkit-transform 0.25s;
 }
 
+#header .dimmer {
+  position: absolute;
+  z-index: 1;
+  display: none;
+  top: -30px;
+  left: -10px;
+  right: -10px;
+  height: calc(100vh + 60px);
+  background-color: #29292999;
+}
+
 #header .burger {
   z-index: 2;
   position: relative;
@@ -269,8 +286,14 @@ body {
             justify-content: flex-end;
     gap: 42px;
   }
+  #header .logo.menu-open .logo-title {
+    color: #F1CDB3;
+  }
+  #header .logo.menu-open .logo-subtitle {
+    color: #FFFFFF;
+  }
   #header .menu-list {
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     top: 0;
     right: -330px;
@@ -301,6 +324,83 @@ body {
   }
   #header .menu-link {
     color: #FAFAFA;
+  }
+  #header .dimmer.active {
+    display: block;
+    cursor: pointer;
+  }
+  #header .burger.active {
+    z-index: 2;
+    position: relative;
+    display: none;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+  }
+  #header .burger.active span {
+    width: 30px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  #header .burger.active span,
+  #header .burger.active span::before,
+  #header .burger.active span::after {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    display: block;
+    -webkit-transition: -webkit-transform 0.25s;
+    transition: -webkit-transform 0.25s;
+    transition: transform 0.25s;
+    transition: transform 0.25s, -webkit-transform 0.25s;
+    background-color: #F1CDB3;
+  }
+  #header .burger.active span::before {
+    content: "";
+    top: -10px;
+    -webkit-transition: top 0.3s 0.3s, -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: top 0.3s 0.3s, -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: top 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: top 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  #header .burger.active span::after {
+    content: "";
+    bottom: -10px;
+    -webkit-transition: bottom 0.3s 0.3s, -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: bottom 0.3s 0.3s, -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: bottom 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: bottom 0.3s 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  #header .burger.active.active span {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  #header .burger.active.active span:before {
+    content: "";
+    top: 0px;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+    -webkit-transition: top 0.3s, -webkit-transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: top 0.3s, -webkit-transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: top 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: top 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), -webkit-transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  #header .burger.active.active span:after {
+    content: "";
+    bottom: 0;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+    -webkit-transition: bottom 0.3s, -webkit-transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: bottom 0.3s, -webkit-transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: bottom 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: bottom 0.3s, transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), -webkit-transform 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@media screen and (max-width: 767px) and (max-width: 767px) {
+  #header .burger.active {
+    display: block;
   }
 }
 

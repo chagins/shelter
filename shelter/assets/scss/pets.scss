@@ -13,6 +13,10 @@ body {
   background: radial-gradient(#5B483A, #262425), #211F20;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 .container {
   position: relative;
   max-width: $size-width-standart;
@@ -45,6 +49,8 @@ body {
   background-color: $color-light-xl;
 
   .logo {
+    z-index: 3;
+    position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -127,6 +133,18 @@ body {
       transition: transform 0.25s, color 0.5s;
     }
   }
+
+  .dimmer {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    top: (-$size-padding-top-small);
+    left: (-$size-padding-side-small);
+    right: (-$size-padding-side-small);
+    height: calc(100vh + #{$size-header-height});
+    background-color: $color-dark-dimmer;
+  }
+
   
   .burger {
     @include burger($color: $color-black);
@@ -145,8 +163,20 @@ body {
     justify-content: flex-end;
     gap: 42px;
 
+    .logo.menu-open {
+
+      .logo-title {
+        color: $color-primary;
+      }
+
+      .logo-subtitle {
+        color: $color-light-xl;
+      }
+
+    }
+
     .menu-list {
-      z-index: 1;
+      z-index: 2;
       position: absolute;
       top: 0;
       right: (-$size-padding-side-small - $size-media-small);
@@ -173,6 +203,16 @@ body {
     .menu-link {
       color: $color-light-s;
     }
+
+    .dimmer.active {
+      display: block;
+      cursor: pointer;
+    }
+
+    .burger.active{
+      @include burger($color: $color-primary);
+    }
+
   }
 }
 
