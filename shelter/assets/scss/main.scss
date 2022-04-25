@@ -13,6 +13,10 @@ body {
   background: radial-gradient(#5B483A, #262425), #211F20;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 .container {
   position: relative;
   max-width: $size-width-standart;
@@ -46,7 +50,7 @@ body {
   align-items: center;
 
   .logo {
-    z-index: 2;
+    z-index: 3;
     position: relative;
     height: 100%;
     display: flex;
@@ -130,6 +134,17 @@ body {
     }
   }
 
+  .dimmer {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    top: (-$size-padding-top-small);
+    left: (-$size-padding-side-small);
+    right: (-$size-padding-side-small);
+    height: 100vh;
+    background-color: $color-dark-dimmer;
+  }
+
   .burger {
     @include burger($color: $color-primary);
   }
@@ -140,7 +155,7 @@ body {
     padding-right: 42px;
 
     .menu-list {
-      z-index: 1;
+      z-index: 2;
       position: absolute;
       top: (-$size-padding-top-small);
       right: (-$size-padding-side-small - $size-media-small);
@@ -162,6 +177,11 @@ body {
     .menu-line {
       font-size: 32px;
       line-height: 160%;
+    }
+
+    .dimmer.active {
+      display: block;
+      cursor: pointer;
     }
   }
 }

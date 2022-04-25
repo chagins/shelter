@@ -13,6 +13,7 @@ const SLIDER_WIDTH_SMALL = 270;
 const menu_list = document.querySelector('.menu-list');
 const menu_links = document.querySelectorAll('.menu-link');
 const burger = document.querySelector('.burger');
+const dimmer = document.querySelector('.dimmer');
 const btn_left = document.querySelector('#btn-left');
 const btn_right = document.querySelector('#btn-right');
 const slider = document.querySelector('.slider');
@@ -37,6 +38,10 @@ if(menu_list) {
 
 if(burger) {
   burger.addEventListener('click', openMenu);
+}
+
+if(dimmer) {
+  dimmer.addEventListener('click', openMenu);
 }
 
 if(btn_left){
@@ -73,6 +78,8 @@ if(slider) {
 function openMenu() {
   burger.classList.toggle('active');
   menu_list.classList.toggle('active');
+  dimmer.classList.toggle('active');
+  document.body.classList.toggle('lock');
 }
 
 function moveLeft() {
