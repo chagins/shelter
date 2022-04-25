@@ -25,6 +25,8 @@ let sliderWidth = 0;
 let group_count_card = 0;
 let selectedCard;
 
+alert('Доброго времени суток! Не успеваю доделать проект. Прошу связаться со мной в дискорде Yaroslav Chagin#1853. Я в свою очередь обязательно вам напишу как сделаю.');
+
 initSlider();
 
 if(menu_list) {
