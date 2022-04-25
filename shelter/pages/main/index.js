@@ -13,14 +13,17 @@ const SLIDER_WIDTH_SMALL = 270;
 const menu_list = document.querySelector('.menu-list');
 const menu_links = document.querySelectorAll('.menu-link');
 const burger = document.querySelector('.burger');
-const dimmer = document.querySelector('.dimmer');
+const dimmer_menu = document.querySelector('.dimmer-menu');
+const dimmer_global = document.querySelector('#dimmer');
 const btn_left = document.querySelector('#btn-left');
 const btn_right = document.querySelector('#btn-right');
 const slider = document.querySelector('.slider');
+const our_friends = document.querySelector('#our-friends');
 
 let generatedPetsIndices = [];
 let sliderWidth = 0;
 let group_count_card = 0;
+let selectedCard;
 
 initSlider();
 
@@ -40,8 +43,12 @@ if(burger) {
   burger.addEventListener('click', openMenu);
 }
 
-if(dimmer) {
-  dimmer.addEventListener('click', openMenu);
+if(dimmer_menu) {
+  dimmer_menu.addEventListener('click', openMenu);
+}
+
+if(dimmer_global) {
+  dimmer_global.addEventListener('click', closeCardPopup);
 }
 
 if(btn_left){
@@ -56,16 +63,21 @@ if(slider) {
   slider.addEventListener('animationend', (animationEvent) => {
     if(animationEvent.animationName === 'move-left') {
       slider.classList.remove('transition-left');
-      const cards_left = document.querySelector('#cards-left').innerHTML;
-      document.querySelector('#cards-active').innerHTML = cards_left;
-      document.querySelector('#cards-left').innerHTML = '';
+      let cards_left = document.querySelector('#cards-left');
+      let cards_active = document.querySelector('#cards-active');
+      cards_active.innerHTML = '';
+      while(cards_left.childNodes.length > 0) {
+        cards_active.appendChild(cards_left.childNodes[0]);
+      }
       slider.style.left = '0';
     } else {
-      console.log(animationEvent.animationName);
       slider.classList.remove('transition-right');
-      const cards_right = document.querySelector('#cards-right').innerHTML;
-      document.querySelector('#cards-active').innerHTML = cards_right;
-      document.querySelector('#cards-right').innerHTML = '';
+      let cards_right = document.querySelector('#cards-right');
+      let cards_active = document.querySelector('#cards-active');
+      cards_active.innerHTML = '';
+      while(cards_right.childNodes.length > 0) {
+        cards_active.appendChild(cards_right.childNodes[0]);
+      }
       slider.style.left = '0';
     };
 
@@ -75,11 +87,13 @@ if(slider) {
 }
 
 // functions
-function openMenu() {
+function openMenu(e) {
+
   burger.classList.toggle('active');
   menu_list.classList.toggle('active');
-  dimmer.classList.toggle('active');
+  dimmer_menu.classList.toggle('active');
   document.body.classList.toggle('lock');
+
 }
 
 function moveLeft() {
@@ -147,10 +161,12 @@ function getPetCard() {
   button.onclick = 'location.href="#fake"';
   button.innerText = 'Learn more';
   card.append(img, pet_name, button);
+  card.dataset.index = generatedPetsIndices[generatedPetsIndices.length-1];
+  card.addEventListener('click', openCardPopup);
   return card;
 }
 
-function getRandomPet(){
+function getRandomPet() {
   let getRandomIndex = (stackArr, sourceArr) => {
     let index = Math.floor(Math.random() * sourceArr.length);
     while(stackArr.indexOf(index) !== -1 ) {
@@ -168,3 +184,86 @@ function getRandomPet(){
 
   return petsObjects[index];
 };
+
+function openCardPopup(e) {
+  const selectedCardIndex = e.currentTarget.dataset.index;
+  const selectedCard = petsObjects[+selectedCardIndex];
+  const popup = document.createElement('div');
+  popup.classList.add('popup', 'active');
+
+  const popup_wrapper = document.createElement('div');
+  popup_wrapper.classList.add('popup-wrapper');
+
+  const popup_close = document.createElement('button');
+  popup_close.classList.add('popup-close');
+  popup_close.addEventListener('click', closeCardPopup);
+  const img = document.createElement('img');
+  img.src = "../../assets/svg/close.svg";
+  img.alt = 'close';
+  popup_close.appendChild(img);
+  popup.appendChild(popup_close);
+
+  const popup_img = document.createElement('img');
+  popup_img.classList.add('popup-img');
+  popup_img.src = selectedCard.img;
+  popup_img.alt = `pet-${selectedCard.name}`;
+  popup_img.width = 500;
+  popup_img.height = 500;
+  popup_wrapper.appendChild(popup_img);
+
+  const popup_content = document.createElement('div');
+  popup_content.classList.add('popup-content');
+
+  const popup_title = document.createElement('div');
+  popup_title.classList.add('popup-title');
+  const pet_name = document.createElement('p');
+  pet_name.classList.add('pet-name');
+  pet_name.innerText = selectedCard.name;
+  const type_breed = document.createElement('p');
+  type_breed.classList.add('type-breed');
+  type_breed.innerText = `${selectedCard.type} - ${selectedCard.breed}`;
+  popup_title.append(pet_name, type_breed);
+  popup_content.appendChild(popup_title);
+
+  const popup_descr = document.createElement('p');
+  popup_descr.classList.add('popup-description');
+  popup_descr.innerText = selectedCard.description;
+  popup_content.appendChild(popup_descr);
+
+  const popup_options = document.createElement('ul');
+  popup_options.classList.add('popup-options');
+  let pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<b>Age:</b> ${selectedCard.age}`;
+  popup_options.appendChild(pet_option);
+
+  pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<b>Inoculations:</b> ${selectedCard.inoculations}`;
+  popup_options.appendChild(pet_option);
+
+  pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<b>Diseases:</b> ${selectedCard.diseases}`;
+  popup_options.appendChild(pet_option);
+
+  pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<strong>Parasites:</strong> ${selectedCard.parasites}`;
+  popup_options.appendChild(pet_option);
+  popup_content.appendChild(popup_options);
+  popup_wrapper.appendChild(popup_content);
+
+  popup.appendChild(popup_wrapper);
+  our_friends.appendChild(popup);
+  dimmer_global.classList.add('active');
+  document.body.classList.add('lock');
+}
+
+function closeCardPopup(e) {
+  const popup = document.querySelector('.popup');
+  popup.remove();
+  popup.classList.remove('active');
+  dimmer_global.classList.remove('active');
+  document.body.classList.remove('lock');
+}

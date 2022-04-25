@@ -8,6 +8,7 @@ html {
 }
 
 body {
+  position: relative;
   width: 100%;
   overflow: auto;
   background: radial-gradient(#5B483A, #262425), #211F20;
@@ -15,6 +16,20 @@ body {
 
 body.lock {
   overflow: hidden;
+}
+
+#dimmer {
+  position: absolute;
+  z-index: 1;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: $color-dark-dimmer;
+}
+
+#dimmer.active {
+  display: block;
+  cursor: pointer;
 }
 
 .container {
@@ -134,7 +149,7 @@ body.lock {
     }
   }
 
-  .dimmer {
+  .dimmer-menu {
     position: absolute;
     z-index: 1;
     display: none;
@@ -179,7 +194,7 @@ body.lock {
       line-height: 160%;
     }
 
-    .dimmer.active {
+    .dimmer-menu.active {
       display: block;
       cursor: pointer;
     }
@@ -369,6 +384,8 @@ body.lock {
 }
 
 #our-friends {
+  position: relative;
+
   margin: 0 (-$size-padding-side-standart);
   padding: 79px 0 100px;
   display: flex;
@@ -448,7 +465,10 @@ body.lock {
     from {left: 0px;}
     to {left: -990px;}
   }
-  
+
+  .popup {
+    @include popup;
+  }
 
   @include screen-medium-standart {
     margin: 0 (-$size-padding-side-medium);
