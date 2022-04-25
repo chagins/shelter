@@ -11,6 +11,7 @@
   <title>Shelter</title>
 </head>
 <body>
+  <div class="dimmer" id="dimmer"></div>
   <div class="container">
     <header id="header">
       <a href=".">
@@ -26,7 +27,7 @@
           <li class="menu-line"><a href="#help" class="menu-link">Help the shelter</a></li>
           <li class="menu-line"><a href="#footer" class="menu-link">Contacts</a></li>
         </ul>
-        <div class="dimmer"></div>
+        <div class="dimmer-menu"></div>
         <div class="burger" title="menu">
           <span></span>
         </div>
@@ -97,7 +98,10 @@
         </div>
         <button  class="btn our-pets" onclick="location.href='../pets/index.html'">Get to know the rest</button>
         <!-- <div class="popup">
-          <img src="../../assets/images/pets-sophia.jpg" alt="pet-Sophia" width="500" height="500">
+          <button class="popup-close">
+            <img src="../../assets/svg/close.svg" alt="close">
+          </button>
+          <img class="popup-img" src="../../assets/images/pets-sophia.jpg" alt="pet-Sophia" width="500" height="500">
           <div class="popup-content">
             <div class="popup-title">
               <p class="pet-name">Sophia</p>
