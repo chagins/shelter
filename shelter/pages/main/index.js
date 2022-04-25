@@ -63,15 +63,21 @@ if(slider) {
   slider.addEventListener('animationend', (animationEvent) => {
     if(animationEvent.animationName === 'move-left') {
       slider.classList.remove('transition-left');
-      const cards_left = document.querySelector('#cards-left').innerHTML;
-      document.querySelector('#cards-active').innerHTML = cards_left;
-      document.querySelector('#cards-left').innerHTML = '';
+      let cards_left = document.querySelector('#cards-left');
+      let cards_active = document.querySelector('#cards-active');
+      cards_active.innerHTML = '';
+      while(cards_left.childNodes.length > 0) {
+        cards_active.appendChild(cards_left.childNodes[0]);
+      }
       slider.style.left = '0';
     } else {
       slider.classList.remove('transition-right');
-      const cards_right = document.querySelector('#cards-right').innerHTML;
-      document.querySelector('#cards-active').innerHTML = cards_right;
-      document.querySelector('#cards-right').innerHTML = '';
+      let cards_right = document.querySelector('#cards-right');
+      let cards_active = document.querySelector('#cards-active');
+      cards_active.innerHTML = '';
+      while(cards_right.childNodes.length > 0) {
+        cards_active.appendChild(cards_right.childNodes[0]);
+      }
       slider.style.left = '0';
     };
 
@@ -160,7 +166,7 @@ function getPetCard() {
   return card;
 }
 
-function getRandomPet(){
+function getRandomPet() {
   let getRandomIndex = (stackArr, sourceArr) => {
     let index = Math.floor(Math.random() * sourceArr.length);
     while(stackArr.indexOf(index) !== -1 ) {
@@ -182,10 +188,11 @@ function getRandomPet(){
 function openCardPopup(e) {
   const selectedCardIndex = e.currentTarget.dataset.index;
   const selectedCard = petsObjects[+selectedCardIndex];
-  console.log(selectedCardIndex);
-
   const popup = document.createElement('div');
   popup.classList.add('popup', 'active');
+
+  const popup_wrapper = document.createElement('div');
+  popup_wrapper.classList.add('popup-wrapper');
 
   const popup_close = document.createElement('button');
   popup_close.classList.add('popup-close');
@@ -197,56 +204,57 @@ function openCardPopup(e) {
   popup.appendChild(popup_close);
 
   const popup_img = document.createElement('img');
-  popup_img.classList.add('popup_img');
+  popup_img.classList.add('popup-img');
   popup_img.src = selectedCard.img;
   popup_img.alt = `pet-${selectedCard.name}`;
   popup_img.width = 500;
   popup_img.height = 500;
-  popup.appendChild(popup_img);
+  popup_wrapper.appendChild(popup_img);
 
   const popup_content = document.createElement('div');
   popup_content.classList.add('popup-content');
 
-    const popup_title = document.createElement('div');
-    popup_title.classList.add('popup-title');
-      const pet_name = document.createElement('p');
-      pet_name.classList.add('pet-name');
-      pet_name.innerText = selectedCard.name;
-      const type_breed = document.createElement('p');
-      type_breed.classList.add('type-breed');
-      type_breed.innerText = `${selectedCard.type} - ${selectedCard.breed}`;
-      popup_title.appendChild(pet_name, type_breed);
-    popup_content.appendChild(popup_title);
+  const popup_title = document.createElement('div');
+  popup_title.classList.add('popup-title');
+  const pet_name = document.createElement('p');
+  pet_name.classList.add('pet-name');
+  pet_name.innerText = selectedCard.name;
+  const type_breed = document.createElement('p');
+  type_breed.classList.add('type-breed');
+  type_breed.innerText = `${selectedCard.type} - ${selectedCard.breed}`;
+  popup_title.append(pet_name, type_breed);
+  popup_content.appendChild(popup_title);
 
-    const popup_descr = document.createElement('p');
-    popup_descr.classList.add('popup-description');
-    popup_descr.innerText = selectedCard.description;
-    popup_content.appendChild(popup_descr);
+  const popup_descr = document.createElement('p');
+  popup_descr.classList.add('popup-description');
+  popup_descr.innerText = selectedCard.description;
+  popup_content.appendChild(popup_descr);
 
-    const popup_options = document.createElement('ul');
-    popup_options.classList.add('popup-options');
-      let pet_option = document.createElement('li');
-      pet_option.classList.add('pet-option');
-      pet_option.innerHTML = `<b>Age:</b> ${selectedCard.age}`;
-      popup_options.appendChild(pet_option);
+  const popup_options = document.createElement('ul');
+  popup_options.classList.add('popup-options');
+  let pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<b>Age:</b> ${selectedCard.age}`;
+  popup_options.appendChild(pet_option);
 
-      pet_option = document.createElement('li');
-      pet_option.classList.add('pet-option');
-      pet_option.innerHTML = `<b>Inoculations:</b> ${selectedCard.inoculations}`;
-      popup_options.appendChild(pet_option);
+  pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<b>Inoculations:</b> ${selectedCard.inoculations}`;
+  popup_options.appendChild(pet_option);
 
-      pet_option = document.createElement('li');
-      pet_option.classList.add('pet-option');
-      pet_option.innerHTML = `<b>Diseases:</b> ${selectedCard.diseases}`;
-      popup_options.appendChild(pet_option);
+  pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<b>Diseases:</b> ${selectedCard.diseases}`;
+  popup_options.appendChild(pet_option);
 
-      pet_option = document.createElement('li');
-      pet_option.classList.add('pet-option');
-      pet_option.innerHTML = `<strong>Parasites:</strong> ${selectedCard.parasites}`;
-      popup_options.appendChild(pet_option);
-    popup_content.appendChild(popup_options);
-  popup.appendChild(popup_content);
+  pet_option = document.createElement('li');
+  pet_option.classList.add('pet-option');
+  pet_option.innerHTML = `<strong>Parasites:</strong> ${selectedCard.parasites}`;
+  popup_options.appendChild(pet_option);
+  popup_content.appendChild(popup_options);
+  popup_wrapper.appendChild(popup_content);
 
+  popup.appendChild(popup_wrapper);
   our_friends.appendChild(popup);
   dimmer_global.classList.add('active');
   document.body.classList.add('lock');

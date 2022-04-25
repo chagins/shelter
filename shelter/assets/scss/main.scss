@@ -32,8 +32,6 @@ body.lock {
   cursor: pointer;
 }
 
-
-
 .container {
   position: relative;
   max-width: $size-width-standart;
@@ -469,116 +467,8 @@ body.lock {
   }
 
   .popup {
-    z-index: 2;
-    position: fixed;
-    width: 900px;
-    height: 500px;
-    display: none;
-    gap: 29px;
-    background-color: $color-light-s;
-    border-radius: 9px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include popup;
   }
-
-  .popup-close {
-    position: absolute;
-    top: -52px;
-    right: -52px;
-    width: 52px;
-    height: 52px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid $color-primary;
-    box-sizing: border-box;
-    border-radius: 100px;
-    background-color: transparent;
-    transition: color 0.5s;
-
-    &:hover {
-      background-color:  $color-primary-light;
-    }
-  }
-  
-  .popup-img {
-    border-radius: 9px 0 0 9px;
-  }
-
-  .popup-content {
-    padding: 50px 20px 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .popup-title {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .pet-name {
-      font-family: 'Georgia';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 35px;
-      line-height: 130%;
-      letter-spacing: 0.06em;
-      color: $color-black;
-    }
-
-    .type-breed {
-      font-family: 'Georgia';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 115%;
-      letter-spacing: 0.06em;
-      color: $color-black;
-    }
-  }
-
-  .popup-description {
-    font-family: 'Georgia';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 110%;
-    letter-spacing: 0.06em;
-    color: $color-black;
-  }
-
-  .popup-options {
-    padding-left: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
-    font-family: 'Georgia';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 110%;
-    letter-spacing: 0.06em;
-    color: $color-black;
-  }
-
-  .pet-option {
-    list-style-type: disc;
-    &::marker {
-      color: $color-primary;
-      font-size: 1.2em;
-    }
-
-    &:first-child {
-      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-  }
-
-  .popup.active {
-    display: flex;
-  }
-
 
   @include screen-medium-standart {
     margin: 0 (-$size-padding-side-medium);
