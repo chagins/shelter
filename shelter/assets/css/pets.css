@@ -845,9 +845,6 @@ body.lock {
     width: 580px;
     overflow: hidden;
   }
-  #our-friends .card:nth-last-child(-n+2) {
-    display: none;
-  }
   #our-friends .navigation {
     padding-top: 10px;
     padding-bottom: 5px;
@@ -869,9 +866,6 @@ body.lock {
     height: 1365px;
     width: 270px;
     overflow: hidden;
-  }
-  #our-friends .card:nth-last-child(-n+5) {
-    display: none;
   }
   #our-friends .navigation {
     gap: 10px;
