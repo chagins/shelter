@@ -6,6 +6,8 @@ const SCREEN_STANDART = "screen and (min-width: 1280px)";
 const SCREEN_MEDIUM_STANDART = 'screen and (min-width: 768px) and (max-width: 1279px)';
 const SCREEN_SMALL_MEDIUM = 'screen and (max-width: 767px)';
 
+const MAX_CARDS_COUNT = 48;
+
 const menu_list = document.querySelector('.menu-list');
 const menu_links = document.querySelectorAll('.menu-link');
 const burger = document.querySelector('.burger');
@@ -14,6 +16,12 @@ const dimmer_menu = document.querySelector('.dimmer-menu');
 const dimmer_global = document.querySelector('#dimmer');
 const card_wrapper = document.querySelector('.card-wrapper');
 const our_friends = document.querySelector('#our-friends');
+const navigation = document.querySelector('.navigation');
+const btn_page = document.querySelector('#btn-page');
+const btn_right = document.querySelector('#btn-right');
+const btn_left = document.querySelector('#btn-left');
+const btn_begin = document.querySelector('#btn-begin');
+const btn_end = document.querySelector('#btn-end');
 
 let generatedPetsIndices = [];
 let group_count_card = 0;
@@ -22,35 +30,42 @@ if(dimmer_global) {
   dimmer_global.addEventListener('click', closeCardPopup);
 }
 
+if(navigation) {
+  navigation.addEventListener('click', getNextPage);
+}
+
 initCards();
 
 function initCards() {
-  setGroupSizes();
-  // let cards_active = document.querySelector('#cards-active');
-  getCardGroup(card_wrapper, group_count_card);
+  group_count_card = getGroupSizes();
+  generatedPetsIndices = getPetsIndicies(MAX_CARDS_COUNT, group_count_card, petsObjects);
+  getCardGroup(0, group_count_card, card_wrapper);
+  btn_page.dataset.page = 1;
 }
 
-function setGroupSizes() {
-
+function getGroupSizes() {
+  let count = 0;
   if(window.matchMedia(SCREEN_STANDART).matches) {
-    group_count_card = 8;
+    count = 8;
   }
   if(window.matchMedia(SCREEN_MEDIUM_STANDART).matches) {
-    group_count_card = 8;
+    count = 6;
   }
   if(window.matchMedia(SCREEN_SMALL_MEDIUM).matches) {
-    group_count_card = 8;
+    count = 3;
+  }
+  return count;
+}
+
+function getCardGroup(startIndex, count, node) {
+  node.innerHTML = '';
+  for(let i = startIndex; i < startIndex + count; i++){ 
+    node.append(getPetCard(generatedPetsIndices[i], petsObjects));
   }
 }
 
-function getCardGroup(node, count) {
-  for(let i = 0; i < count; i++){ 
-    node.append(getPetCard());
-  }
-}
-
-function getPetCard() {
-  const pet = getRandomPet();
+function getPetCard(index, sourceArr) {
+  const pet = sourceArr[index];
   const card = document.createElement('div');
   card.classList.add('card');
   const img = document.createElement('img');
@@ -66,28 +81,81 @@ function getPetCard() {
   button.onclick = 'location.href="#fake"';
   button.innerText = 'Learn more';
   card.append(img, pet_name, button);
-  card.dataset.index = generatedPetsIndices[generatedPetsIndices.length-1];
+  card.dataset.index = index;
   card.addEventListener('click', openCardPopup);
   return card;
 }
 
-function getRandomPet() {
-  let getRandomIndex = (stackArr, sourceArr) => {
-    let index = Math.floor(Math.random() * sourceArr.length);
-    while(stackArr.indexOf(index) !== -1 ) {
-      index = Math.floor(Math.random() * sourceArr.length);
+function getPetsIndicies(count, groupSize, sourceArr) {
+  let groupCount = Math.floor(count / groupSize);
+  let resultArr = [];
+  for(let i = 0; i < groupCount; i++) {
+    let stackArr = [];
+    for(let j = 0; j < group_count_card; j++){
+      let index = Math.floor(Math.random() * sourceArr.length);
+      if(stackArr.indexOf(index) === -1){
+        stackArr.push(index);
+      } else {
+        j--;
+      }
     };
-    return index;
+    resultArr.push(...stackArr);
+    stackArr = [];
   };
+  return resultArr;
+};
 
-  if (generatedPetsIndices.length > group_count_card) {
-    generatedPetsIndices.splice(0, group_count_card);
+function getNextPage(e) {
+
+  const btnClassReady = 'btn-pag ready';
+  const btnClassDisabled= 'btn-pag disabled';
+
+  let currentPage = (+btn_page.dataset.page);
+  const pressedBtn = e.target;
+
+  const hasLeftPages = () => currentPage > 1;
+  const hasRightPages = () => generatedPetsIndices.length-1 > currentPage * group_count_card;
+  const setBtnStatus = () => {
+    btn_left.className = hasLeftPages() ? btnClassReady : btnClassDisabled;
+    btn_right.className = hasRightPages() ? btnClassReady : btnClassDisabled;
+    btn_begin.className = hasLeftPages() ? btnClassReady : btnClassDisabled;
+    btn_end.className = hasRightPages() ? btnClassReady : btnClassDisabled;
   }
 
-  let index = getRandomIndex(generatedPetsIndices, petsObjects);
-  generatedPetsIndices.push(index);
-  return petsObjects[index];
-};
+  if(pressedBtn === btn_right && hasRightPages()) {
+    let nextItemIndex = currentPage * group_count_card;
+    getCardGroup(nextItemIndex, group_count_card, card_wrapper);
+    btn_page.dataset.page = ++currentPage;
+    btn_page.innerText = btn_page.dataset.page;
+  };
+
+  if(pressedBtn === btn_end && hasRightPages()) {
+    let nextItemIndex = MAX_CARDS_COUNT - group_count_card;
+    getCardGroup(nextItemIndex, group_count_card, card_wrapper);
+    currentPage = MAX_CARDS_COUNT / group_count_card;
+    btn_page.dataset.page = currentPage
+    btn_page.innerText = currentPage;
+  };
+
+  if(pressedBtn === btn_left && hasLeftPages()) {
+    let nextItemIndex = (currentPage - 1) * group_count_card - group_count_card; 
+    getCardGroup(nextItemIndex, group_count_card, card_wrapper);
+    btn_page.dataset.page = --currentPage;
+    btn_page.innerText = btn_page.dataset.page;
+  };
+
+  if(pressedBtn === btn_begin && hasLeftPages()) {
+    let nextItemIndex = 0; 
+    getCardGroup(nextItemIndex, group_count_card, card_wrapper);
+    currentPage = 1;
+    btn_page.dataset.page = 1;
+    btn_page.innerText = 1;
+  };
+
+  setBtnStatus();
+}
+
+
 
 function openCardPopup(e) {
   const selectedCardIndex = e.currentTarget.dataset.index;

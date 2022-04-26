@@ -294,9 +294,9 @@ body.lock {
     }
 
     .card {
-      &:nth-last-child(-n+2){
-        display: none;
-      }
+      // &:nth-last-child(-n+2){
+      //   display: none;
+      // }
     }
 
     .navigation {
@@ -323,9 +323,9 @@ body.lock {
     }
 
     .card {
-      &:nth-last-child(-n+5){
-        display: none;
-      }
+      // &:nth-last-child(-n+5){
+      //   display: none;
+      // }
     }
 
     .navigation {
