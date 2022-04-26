@@ -319,6 +319,7 @@ body.lock {
   }
   #header .menu-list.active {
     right: -10px;
+    overflow-y: auto;
   }
   #header .menu-line {
     font-size: 32px;

@@ -29,13 +29,16 @@ initSlider();
 
 if(menu_list) {
   menu_list.addEventListener('click', e => {
-    openMenu(e);
-    if(menu_links.length > 0) {
-      menu_links.forEach(menu_link => {
-        menu_link.classList.remove('active');
-      });
+    if(e.target.classList.contains('menu-link')) {
+      openMenu(e);
+      if(menu_links.length > 0) {
+        menu_links.forEach(menu_link => {
+          menu_link.classList.remove('active');
+        });
+      };
+      e.target.classList.add('active');
     };
-    e.target.classList.add('active');
+    
   })
 };
 
