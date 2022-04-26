@@ -186,6 +186,7 @@ body.lock {
       
       &.active {
         right: (-$size-padding-side-small);
+        overflow-y: auto;
       }
     }
 

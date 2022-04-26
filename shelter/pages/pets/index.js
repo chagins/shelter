@@ -155,8 +155,6 @@ function getNextPage(e) {
   setBtnStatus();
 }
 
-
-
 function openCardPopup(e) {
   const selectedCardIndex = e.currentTarget.dataset.index;
   const selectedCard = petsObjects[+selectedCardIndex];
@@ -242,13 +240,15 @@ function closeCardPopup(e) {
 
 if(menu_list) {
   menu_list.addEventListener('click', e => {
-    openMenu(e);
-    if(menu_links.length > 0) {
-      menu_links.forEach(menu_link => {
-        menu_link.classList.remove('active');
-      });
-    };
-    e.target.classList.add('active');
+    if(e.target.classList.contains('menu-link')) {
+      openMenu(e);
+      if(menu_links.length > 0) {
+        menu_links.forEach(menu_link => {
+          menu_link.classList.remove('active');
+        });
+      };
+      e.target.classList.add('active');
+    }
   })
 };
 

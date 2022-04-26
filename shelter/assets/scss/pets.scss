@@ -207,6 +207,7 @@ body.lock {
       
       &.active {
         right: $size-padding-side-small;
+        overflow-y: auto;
       }
     }
 
@@ -293,12 +294,6 @@ body.lock {
       overflow: hidden;
     }
 
-    .card {
-      // &:nth-last-child(-n+2){
-      //   display: none;
-      // }
-    }
-
     .navigation {
       padding-top: 10px;
       padding-bottom: 5px;
@@ -320,12 +315,6 @@ body.lock {
       height: 1365px;
       width: 270px;
       overflow: hidden;
-    }
-
-    .card {
-      // &:nth-last-child(-n+5){
-      //   display: none;
-      // }
     }
 
     .navigation {
