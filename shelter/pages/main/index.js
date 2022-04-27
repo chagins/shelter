@@ -23,7 +23,6 @@ const our_friends = document.querySelector('#our-friends');
 let generatedPetsIndices = [];
 let sliderWidth = 0;
 let group_count_card = 0;
-let selectedCard;
 
 initSlider();
 
@@ -89,14 +88,26 @@ if(slider) {
   })
 }
 
+window.addEventListener('resize', () => {
+  if(window.matchMedia(SCREEN_STANDART).matches &&
+     sliderWidth !== SLIDER_WIDTH_STANDART ||
+
+     window.matchMedia(SCREEN_MEDIUM_STANDART).matches &&
+     sliderWidth !== SLIDER_WIDTH_MEDIUM ||
+
+     window.matchMedia(SCREEN_SMALL_MEDIUM).matches &&
+     sliderWidth !== SLIDER_WIDTH_SMALL) {
+    resizeSlider();
+  }
+
+})
+
 // functions
 function openMenu(e) {
-
   burger.classList.toggle('active');
   menu_list.classList.toggle('active');
   dimmer_menu.classList.toggle('active');
   document.body.classList.toggle('lock');
-
 }
 
 function moveLeft() {
@@ -123,6 +134,19 @@ function initSlider() {
   setGroupSizes();
   let cards_active = document.querySelector('#cards-active');
   getCardGroup(cards_active, group_count_card);
+}
+
+function resizeSlider() {
+  setGroupSizes();
+  let cards_active = document.getElementById('cards-active');
+  let currentCardsCount = cards_active.childElementCount;
+  if(group_count_card > currentCardsCount) {
+    getCardGroup(cards_active, group_count_card - currentCardsCount);
+  } else {
+    for(let i=0; i < currentCardsCount - group_count_card; i++){
+      cards_active.removeChild(cards_active.lastChild);
+    }
+  }
 }
 
 function setGroupSizes() {
