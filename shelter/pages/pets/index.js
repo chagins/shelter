@@ -163,6 +163,8 @@ function openCardPopup(e) {
 
   const popup_wrapper = document.createElement('div');
   popup_wrapper.classList.add('popup-wrapper');
+  popup_wrapper.addEventListener('mouseout', hoverOnBtnClose);
+  popup_wrapper.addEventListener('mouseover', hoverOffBtnClose);
 
   const popup_close = document.createElement('button');
   popup_close.classList.add('popup-close');
@@ -266,4 +268,14 @@ function openMenu() {
   logo.classList.toggle('menu-open');
   dimmer_menu.classList.toggle('active');
   document.body.classList.toggle('lock');
+}
+
+function hoverOnBtnClose() {
+  const btnClose = document.querySelector('.popup-close');
+  btnClose.style['background-color'] = '#FDDCC4';
+}
+
+function hoverOffBtnClose() {
+  const btnClose = document.querySelector('.popup-close');
+  btnClose.style['background-color'] = 'transparent';
 }
