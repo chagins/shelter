@@ -1,8 +1,6 @@
 'use strict'
 
-// import petsObjects from '../../assets/js/pets.js';
-const petsJSON = await fetch('../../assets/json/pets.json');
-const petsObjects = await petsJSON.json();
+import petsObjects from '../../assets/js/pets.js';
 
 const SCREEN_STANDART = "screen and (min-width: 1280px)";
 const SCREEN_MEDIUM_STANDART = 'screen and (min-width: 768px) and (max-width: 1279px)';
